@@ -14,4 +14,4 @@ class GovBank(models.Model):
     date_carrency = models.DateTimeField(default=timezone.now)
  
     def __str__(self):
-        return f'{self.name_currency} {self.date_carrency.date()}'
+        return f'{self.name_currency}-{self.value_currency}      Date create: {self.date_carrency.date()}'
