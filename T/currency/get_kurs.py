@@ -37,6 +37,22 @@ def get_gov_usd(text):
         print(e)
         return None
 
+
+def get_nbu_currency(text):
+    try:
+        currency_base = {}
+        for i in text:
+            if i['cc'] == 'USD':
+                print(i['txt'], i['rate'])
+                currency_base['currency_name'] = i['cc']
+
+            elif i['cc'] == 'EUR':
+                print(i['txt'], i['rate'])
+
+    except Exception as e:
+        print(e)
+        return None
+
 def get_gov_eur(text):
     try:
         for i in text:
@@ -50,20 +66,34 @@ def get_gov_eur(text):
 # def try_exept():
 
 
-def get_privat_usd(text):
+def get_privat_currency(text):
     try:
+        currency_base = {}
         ex_text = text['exchangeRate']
         ex_text.pop(0)
         for i in ex_text:
             try:
                 if i['currency'] == 'USD':
-                    print(i['currency'], i['saleRateNB'], i['saleRate'], i['purchaseRate'])
-                    print()
-                # if i['cc'] == 'USD':
-                #     print(i['txt'], i['rate'])
-                #     return [i['txt'], i['rate']]
+                    currency_base['currency_name_usd'] = i['currency']
+                    currency_base['nbu_price_usd'] = i['saleRateNB']
+                    currency_base['privat_price_usd_sale'] = i['saleRate']
+                    currency_base['privat_price_usd_bay'] = i['purchaseRate']
+                    print(
+                        f"Курс {currency_base['currency_name_usd']} на {date.day}.{fucken_datetime(date.month)}:" \
+                        f"\nНБУ - {currency_base['nbu_price_usd']} грн\nPrivatBank покупка - {currency_base['privat_price_usd_sale']}грн\nPrivatBank продажа - {currency_base['privat_price_usd_bay']}грн\n"
+                    )
+                elif i['currency'] == 'EUR':
+                    currency_base['currency_name_eur'] = i['currency']
+                    currency_base['nbu_price_eur'] = i['saleRateNB']
+                    currency_base['privat_price_eur_sale'] = i['saleRate']
+                    currency_base['privat_price_eur_bay'] = i['purchaseRate']
+                    print(
+                        f"\nКурс {currency_base['currency_name_eur']} на {date.day}.{fucken_datetime(date.month)}:" \
+                        f"\nНБУ - {currency_base['nbu_price_eur']} грн\nPrivatBank покупка - {currency_base['privat_price_eur_sale']}грн\nPrivatBank продажа - {currency_base['privat_price_eur_bay']}грн\n"
+                    )
             except KeyError:
                 print('KeyError')
+        return currency_base
     except Exception as e:
         print(e)
         return None
@@ -73,4 +103,4 @@ if __name__ == '__main__':
     get_gov_usd(text=text)
     get_gov_eur(text=text)
 
-    get_privat_usd(text=text2)
+    get_privat_currency(text=text2)
