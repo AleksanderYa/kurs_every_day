@@ -7,6 +7,9 @@ name = "pypi"
 django = "==2.0.5"
 mysqlclient = "*"
 requests = "*"
+ipython = "*"
+jupyter = "*"
+python-telegram-bot = "==11.1.0"
 
 [dev-packages]
 

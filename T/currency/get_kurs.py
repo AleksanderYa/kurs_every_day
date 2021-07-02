@@ -1,7 +1,6 @@
 import requests
 import json
 
-from pprint import pprint
 from datetime import datetime
 
 
@@ -11,63 +10,48 @@ def fucken_datetime(month):
         return '0' + month 
     else:
         return str(month)
-        
-
-date = datetime.now()
-site = f'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date={date.year}{fucken_datetime(date.month)}{date.day}&json' # 20210609
-site2 = f'https://api.privatbank.ua/p24api/exchange_rates?json&date={date.day}.{fucken_datetime(date.month)}.{date.year}'   # 01.07.2021
-# site2 = f'https://api.privatbank.ua/p24api/exchange_rates?date={date.day}.{fucken_datetime(date.month)}.{date.year}'
-
-url = requests.get(site)
-url2 = requests.get(site2)
 
 
-htmltext = url.text
-htmltext2 = url2.text
-text = json.loads(htmltext)
-text2 = json.loads(htmltext2)
-print()
-def get_gov_usd(text):
+def text_privat():
+    date = datetime.now()
+    site = f'https://api.privatbank.ua/p24api/exchange_rates?json&date={date.day}.{fucken_datetime(date.month)}.{date.year}'   # 01.07.2021
+    url = requests.get(site)
+    htmltext = url.text
+    text = json.loads(htmltext)
+    return text
+
+
+
+def text_nbu():
+    date = datetime.now()
+    site = f'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date={date.year}{fucken_datetime(date.month)}{date.day}&json'  # 20210609
+    url = requests.get(site)
+    htmltext = url.text
+    text = json.loads(htmltext)
+    return text
+
+
+def get_nbu_currency():
     try:
-        for i in text:
-            if i['cc'] == 'USD':
-                print(i['txt'], i['rate'])
-                return [i['txt'], i['rate']]
-    except Exception as e:
-        print(e)
-        return None
-
-
-def get_nbu_currency(text):
-    try:
+        text = text_nbu()
         currency_base = {}
         for i in text:
             if i['cc'] == 'USD':
                 print(i['txt'], i['rate'])
-                currency_base['currency_name'] = i['cc']
-
+                currency_base['name_usd_true'] = i['cc']
+                currency_base['nbu_price_usd_true'] = i['rate']
             elif i['cc'] == 'EUR':
                 print(i['txt'], i['rate'])
-
+                currency_base['name_eur_true'] = i['cc']
+                currency_base['nbu_price_eur_true'] = i['rate']
+        return currency_base
     except Exception as e:
         print(e)
         return None
 
-def get_gov_eur(text):
+def get_privat_currency():
     try:
-        for i in text:
-            if i['cc'] == 'EUR':
-                print(i['txt'], i['rate'])
-                return [i['txt'], i['rate']]
-    except Exception as e:
-        print(e)
-        return None
-
-# def try_exept():
-
-
-def get_privat_currency(text):
-    try:
+        text = text_privat()
         currency_base = {}
         ex_text = text['exchangeRate']
         ex_text.pop(0)
@@ -100,7 +84,6 @@ def get_privat_currency(text):
 
 
 if __name__ == '__main__':
-    get_gov_usd(text=text)
-    get_gov_eur(text=text)
+    get_nbu_currency()
 
-    get_privat_currency(text=text2)
+    get_privat_currency()
