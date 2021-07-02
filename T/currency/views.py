@@ -11,6 +11,7 @@ dic = get_privat_currency()
 def button_to_base(request):
     # nbu = c.objects.get(pk=1)
     nbu = c.objects.all()
+    nbu = nbu[::-1]
     nbu = nbu[0]
     dictt = {
         'nbu_price_usd': nbu.nbu_usd,
