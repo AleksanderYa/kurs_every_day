@@ -25,5 +25,7 @@ class Currency(models.Model):
     privat_eur_sale = models.FloatField()
     privat_eur_bay = models.FloatField()
     a = models.DateField
+
+
     def __str__(self):
         return f'Date: {str(self.date)[0:10]} Price: {self.nbu_usd} /{self.nbu_eur} '
