@@ -3,12 +3,13 @@ from currency.models import Currency as c
 from currency.get_kurs import get_privat_currency
 
 dic = get_privat_currency()
-
+# nbu = c.objects.all()
 # Currency.objects.all()
 
 
 
 def button_to_base(request):
+    # nbu = c.objects.get(pk=1)
     nbu = c.objects.all()
     nbu = nbu[0]
     dictt = {

@@ -15,6 +15,15 @@ class Currency(models.Model):
     def __str__(self):
         return f'Date: {str(self.date)[0:10]} Price: {self.nbu_usd} /{self.nbu_eur} '
 
+    class Meta:
+        # verbose_name = 'Курсы валют'
+        verbose_name_plural = 'Курс валют'
+        ordering = [
+            'nbu_usd',
+            'nbu_eur'
+        ]
+
+
 
 class GovBank(models.Model):
     currencys = [
