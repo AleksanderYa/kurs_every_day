@@ -1,18 +1,20 @@
 from django.shortcuts import render
 from currency.models import Currency as c
 from currency.get_kurs import get_privat_currency
+from currency.telega2 import telegram_bot_sendtext
+
 
 dic = get_privat_currency()
 # nbu = c.objects.all()
 # Currency.objects.all()
 
-
+nbu = c.objects.all()
+nbu = nbu[::-1]
+nbu = nbu[0]
 
 def button_to_base(request):
     # nbu = c.objects.get(pk=1)
-    nbu = c.objects.all()
-    nbu = nbu[::-1]
-    nbu = nbu[0]
+
     dictt = {
         'nbu_price_usd': nbu.nbu_usd,
         'nbu_price_eur': nbu.nbu_eur
@@ -29,3 +31,8 @@ def button_to_base(request):
 
 def button(request):
     return render(request, 'currency/button.html')
+
+def send_mess_telega(request):
+    message = f'USD{nbu.nbu_usd}\nEUR{nbu.nbu_eur}'
+    telegram_bot_sendtext(bot_message=message)
+    return render(request, 'currency/button_to_base.html')
