@@ -21,5 +21,6 @@ urlpatterns = [
     path('', button, name='currency-button'),
     path('to_base/', button_to_base, name='currency-button-to-base'),
     path('send_telega/', send_mess_telega, name='send-telega'),
+    path('mirror/', mirror, name='mirror'),
 
 ]

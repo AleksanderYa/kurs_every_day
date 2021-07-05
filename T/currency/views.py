@@ -33,6 +33,15 @@ def button(request):
     return render(request, 'currency/button.html')
 
 def send_mess_telega(request):
+    base_dict = dic.copy()
+    base_dict['title'] = 'KURS'
     message = f'USD{nbu.nbu_usd}\nEUR{nbu.nbu_eur}'
     telegram_bot_sendtext(bot_message=message)
-    return render(request, 'currency/button_to_base.html')
+    return render(request, 'currency/button_to_base.html', base_dict)
+
+def mirror(request):
+    base_dict = dic.copy()
+    base_dict['title'] = 'Mirror'
+    message = f'USD{nbu.nbu_usd}\nEUR{nbu.nbu_eur}'
+    telegram_bot_sendtext(bot_message=message)
+    return render(request, 'currency/mirror.html', base_dict)
