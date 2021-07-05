@@ -43,4 +43,5 @@ def mirror(request):
     return render(request, 'currency/mirror.html', base_dict)
 
 def tested(request):
+    # TODO нужно добавить кнопку
     return render(request, 'currency/tested.html')
