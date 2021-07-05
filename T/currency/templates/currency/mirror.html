@@ -5,7 +5,25 @@
 {% endblock %}
 
 {% block content %}
-    <h1> Содержимое главной страницы </h1>
+    <div>
+        <h1> Все курсы из базы </h1>
+        <br>
+    </div>
+    <br>
+    <ol>
+        {% for i in all_kurs %}
+        <li>
+            <h4>{{ data }}</h4>
+            <h4>Курс Доллара США в НБУ: {{ i.nbu_usd }}</h4>
+            <h4>Курс Евро в НБУ: {{ i.nbu_eur }}</h4>
+            <h4>Курс Доллара США в ПриватБанке/купить: {{ i.privat_usd_sale }}</h4>
+            <h4>Курс Доллара США в ПриватБанке/продать: {{ i.privat_usd_bay }}</h4>
+            <h4>Курс Евро в ПриватБанке/купить: {{ i.privat_eur_sale }}</h4>
+            <h4>Курс Евро в ПриватБанке/продать: {{ i.privat_eur_bay }}</h4>
+        </li>
+        <hr>
+    {% endfor %}
+    </ol>
     <div>
         <a class="btn btn-primary" href="/" role="mirr">
             <h1>Back</h1>

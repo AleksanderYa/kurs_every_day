@@ -42,6 +42,7 @@ def send_mess_telega(request):
 def mirror(request):
     base_dict = dic.copy()
     base_dict['title'] = 'Mirror'
+    base_dict['all_kurs'] = c.objects.all()
     message = f'USD{nbu.nbu_usd}\nEUR{nbu.nbu_eur}'
     telegram_bot_sendtext(bot_message=message)
     return render(request, 'currency/mirror.html', base_dict)
