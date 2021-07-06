@@ -33,9 +33,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'rest_framework',
-    'polls.app.PollsConfig',
+    'polls.apps.PollsConfig',
 
-    'currency.apps.CurrencyCopipnfig',
+    'currency.apps.CurrencyConfig',
     'testy.apps.TestyConfig',
 
     'django.contrib.admin',
