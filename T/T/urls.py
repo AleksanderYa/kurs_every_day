@@ -21,5 +21,6 @@ urlpatterns = [
     path('',  include('currency.urls')),  
 #    path('show/',  views.show),  
     path('admin/', admin.site.urls),
-#    path('index/', views.index),  
+#    path('index/', views.index),
+    path('testy/', include('testy.urls')),
 ]

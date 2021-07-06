@@ -3,7 +3,7 @@ from currency.models import Currency as c
 from currency.get_kurs import get_privat_currency
 from currency.telega2 import telegram_bot_sendtext
 
-
+# TODO при каждой загрузке перегрузке сервера подгружается єта инфа, нужна функция.
 dic = get_privat_currency()
 # nbu = c.objects.all()
 # Currency.objects.all()

@@ -24,16 +24,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_f=865ox(l_ujkkx1mwb*)8vcqv_d0a7++odq$6^o9^ch!tb09'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'currency.apps.CurrencyConfig',
+    'rest_framework',
+    'polls.app.PollsConfig',
+
+    'currency.apps.CurrencyCopipnfig',
     'testy.apps.TestyConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
