@@ -25,18 +25,15 @@ SECRET_KEY = '_f=865ox(l_ujkkx1mwb*)8vcqv_d0a7++odq$6^o9^ch!tb09'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework',
-    'polls.apps.PollsConfig',
+    # 'rest_framework',
 
-    'currency.apps.CurrencyConfig',
-    'testy.apps.TestyConfig',
+    'bf.apps.BfConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,6 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'PAGE_SIZE': 10
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,15 +84,17 @@ WSGI_APPLICATION = 'T.wsgi.application'
 
 
 
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "T.settings")
 
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'test_db',  
+        'NAME': 'bf',
         'USER':'root',  
         'PASSWORD':'37112202',  
         'HOST':'localhost',  
-        'PORT':'3306'  
+        'PORT':'3306',
+        'OPTIONS': {'charset': 'utf8mb4'}
     }  
 }  
 
