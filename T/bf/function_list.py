@@ -7,15 +7,24 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
+
 import os
 import django
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "T.settings")
 django.setup()
+
 from bf.models import InPlay
 
+
 class BFSearch():
-    list_play = ['HT']
+    list_simbol = [
+        'EN',
+        'END',
+        'INPLAY',
+        'HT',
+        'H'
+    ]
 
     def setUp(self):
         #         self.driver = webdriver.Firefox()
@@ -24,9 +33,9 @@ class BFSearch():
         chrome_options = Options ()
         chrome_options.add_argument ("start-maximized")
         self.driver = webdriver.Chrome (PATH, options=chrome_options)
-        self.driver.wait = WebDriverWait (self.driver, 7)
         # self.driver.get('https://www.betfair.com/exchange/plus/inplay/football')
-
+        self.driver.wait = WebDriverWait (self.driver, 7)
+        print('connect to driver ok')
 
     def tearDown(self):
         self.driver.quit ()
@@ -37,23 +46,27 @@ class BFSearch():
         """
         try:
             if type (list_) == list:
-                dell = list_.pop()[1::]
+                dell = list_.pop ()[1::]
                 dell = self.price_del_coma (dell)
-                list_.append (dell)
-                if str(list_[:1]) not in self.list_play:
+                list_.append(dell)
+                if list_[:1] not in self.list_simbol:
                     dell = int (list_.pop (0)[:-1])
                     dell_2 = int (list_.pop (0)[1::])
                     sum_ = dell + dell_2
-                    list_.append (sum_)
+                    list_.append(sum_)
                 else:
                     dell = list_.pop(0)
-                    list_.append (dell)
+                    if dell == 'HT':
+                        dell = -101
+                        list_.append(dell)
+                    else:
+                        list_.append(-200)
 
                 return list_  # ['1', '0', 'FC Kuusysi', 'FC Futura', '93', '13']
             else:
                 print ('seven_list Error type')
         except IndexError:
-            print('End list of elements')
+            print ('End list of elements')
 
     def six_elem(self, list_):
         """
@@ -64,18 +77,22 @@ class BFSearch():
                 dell = list_.pop()[1::]
                 dell = self.price_del_coma(dell)
                 list_.append(dell)
-                if list_[0] not in self.list_play: # ['PER','1', '0', 'FC Kuusysi', 'FC Futura', '93']
+                if list_[0] not in self.list_simbol:  # ['PER','1', '0', 'FC Kuusysi', 'FC Futura', '93']
                     dell = list_.pop(0)[:-1]
-                    list_.append(dell)
-                else:
-                    dell = list_.pop (0)
                     list_.append (dell)
+                else:
+                    dell = list_.pop(0)
+                    if dell == 'HT':
+                        dell = -101
+                        list_.append(dell)
+                    else:
+                        list_.append(-200)
 
                 return list_  # ['1', '0', 'FC Kuusysi', 'FC Futura', '93', '13']
             else:
                 print ('six_list Error type')
         except IndexError:
-            print('End list of elements')
+            print ('End list of elements')
 
     def four_elem(self, list_):
         """
@@ -84,39 +101,39 @@ class BFSearch():
         try:
             if type (list_) == list:
                 dell = list_.pop()[1::]
-                dell = self.price_del_coma (dell)
+                dell = self.price_del_coma(dell)
                 list_.append(dell)
-                list_.append('-1')
-                list_.reverse()
-                list_.pop()
+                list_.append('-201')
+                list_.reverse ()
+                list_.pop ()
                 list_.append ('-1')
-                list_.append('-1')
-                list_.reverse()
+                list_.append ('-1')
+                list_.reverse ()
                 return list_  # ['In-Play','In-Play', 'PKKU/2', 'FC Kontu', '545', 'In-Play']
             else:
-                print('four_list Error type')
+                print ('four_list Error type')
         except IndexError:
-            print('End list of elements')
+            print ('End list of elements')
 
-    def price_del_coma(self, elem:str):
+    def price_del_coma(self, elem: str):
         try:
-            elem = elem.split(',')
-            elem = ''.join(elem)
-            elem = int(elem)
+            elem = elem.split (',')
+            elem = ''.join (elem)
+            elem = int (elem)
             return elem
         except Exception as e:
-            print(e)
+            print (e)
 
     def list_len(self, list_):
         try:
             # list_ = self.list_
-            len_list = len(list_)
+            len_list = len (list_)
             if len_list == 4:
-                return self.four_elem(list_)
+                return self.four_elem (list_)
             elif len_list == 6:
-                return self.six_elem(list_)
+                return self.six_elem (list_)
             elif len_list == 7:
-                return self.seven_elem(list_)
+                return self.seven_elem (list_)
             else:
                 print ('list_len > Error')
         except Exception as e:
@@ -124,57 +141,63 @@ class BFSearch():
 
     def find_coupon_table(self):
         try:
-            # driver = self.driver
-            # driver.get ('https://www.betfair.com/exchange/plus/inplay/football')
-            self.result = self.driver.wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'mod-link')))
-            # result = self.res.find_elements_by_class_name('coupon-table')
-            print(self.result)
-            # time.sleep(2)
-            self.elem = self.result[0]
-            # elem.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'mod-link')))
-            print()
-            # elem = elem.find_elements_by_class_name('mod-link')
-            self.elem = self.result
-            print(self.elem)
-
-            print(result)
-            time.sleep(0.5)
-            elem = result[0]
-            self.elem = elem.find_elements_by_class_name('mod-link')
-            print()
-            # return elem
+            self.res = self.driver.find_elements_by_class_name('coupon-table')
+            return self.res
         except Exception as e:
-            print ('find_coupon_table', e)
-            self.driver.quit ()
+            print('not find_coupon_table', e)
+        finally:
+            print(self.res)
+
+    def find_mod_link(self):
+        try:
+            if type(self.res) == list:
+                res = self.res[0]
+                time.sleep (0.5)
+                self.res = res.find_elements_by_class_name('mod-link')
+                print('Ok, finded mod-link')
+                print(self.res)
+                return self.res
+
+        except Exception as e:
+            print ('not find_mod link', e)
+
+    def find_text(self):
+        if self.res:
+            # list_inplays = self.res[0]
+            for i in self.res:
+                print (i.text)
+
 
     def in_play(self):
-        all_match_info = []
-        for i in self.elem:
-            list_ = []
+        self.all_match_info = []
+        if self.res:
+            for i in self.res:
+                list_ = []
 
-            text = i.text
-            text = text.split('\n')
-            info_list = self.list_len(text)
-            list_.append(info_list)
+                text = i.text
+                text = text.split ('\n')
+                info_list = self.list_len (text)
+                list_.append (info_list)
 
-            name_of_liga = i.get_attribute ('data-competition-or-venue-name')
-            list_.append(name_of_liga)
+                name_of_liga = i.get_attribute ('data-competition-or-venue-name')
+                list_.append (name_of_liga)
 
-            match_url = i.get_attribute ('href')
-            list_.append(match_url)
+                match_url = i.get_attribute ('href')
+                list_.append (match_url)
 
-            all_match_info.append(list_)
-            self.all_match_info = all_match_info
-            # self.all_match_info
-        # return all_match_info
+                self.all_match_info.append (list_)
+            print(self.all_match_info)
+            return self.all_match_info
+            # self.all_match_info = all_match_info
+
 
     def to_dict(self):
         pass
 
     def append_to_db(self):
-        model = InPlay()
-        all_match_info = self.all_match_info
-        for i in all_match_info:
+        # all_match_info = self.all_match_info
+        for i in self.all_match_info:
+            model = InPlay()
             model.time_inplay = i[0][5]
             model.amaunt_match = i[0][4]
             model.runner_away = i[0][3]
@@ -183,21 +206,17 @@ class BFSearch():
             model.scorre_home = i[0][0]
             model.football_liga = i[1]
             model.url_match = i[2]
+            # model.commit()
             model.save()
-
-        print('All add to base')
+            print (model.runner_home, ' add to base')
 
     def click_gb(self):
-        # driver = self.driver
         self.driver.get('https://www.betfair.com/exchange/plus/inplay/football')
+        time.sleep(2)
 
-        self.driver.wait = WebDriverWait (self.driver, 2)
-        self.driver.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'ssc-hls'))).click()
-        # driver.find_element_by_class_name('ssc-ie').click()
-        self.driver.find_element_by_class_name('ssc-en_GB').click()
-        self.driver.switch_to.window(self.driver.current_window_handle)
+        self.driver.find_element_by_class_name ('ssc-hls').click ()
+        self.driver.find_element_by_class_name ('ssc-en_GB').click ()
+        time.sleep(7)
 
-        # self.driver.find_element_by_class_name('ssc-hls').click()
 
-        # 'ssc-hls'
-        # 'ssc-en_GB'
+
