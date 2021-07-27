@@ -132,6 +132,7 @@ class BFSearch():
             time.sleep(0.5)
             elem = result[0]
             self.elem = elem.find_elements_by_class_name('mod-link')
+            print()
             # return elem
         except Exception as e:
             print ('find_coupon_table', e)
