@@ -15,16 +15,17 @@ django.setup()
 from bf.models import InPlay
 
 class BFSearch():
+    list_play = ['HT']
 
     def setUp(self):
         #         self.driver = webdriver.Firefox()
-        PATH = r'C:\Users\Sales2\Desktop\kurs_every_day\T\chrom_driver\chromedriver.exe'
-        # PATH = r'C:\Users\yablu\PycharmProjects\FootballParser\chrom_driver\chromedriver.exe'
+        # PATH = r'C:\Users\Sales2\Desktop\kurs_every_day\T\chrom_driver\chromedriver.exe'
+        PATH = r'C:\Users\yablu\OneDrive\Desktop\kurs_every_day\kurs_every_day\T\chrom_driver\chromedriver.exe'
         chrome_options = Options ()
         chrome_options.add_argument ("start-maximized")
         self.driver = webdriver.Chrome (PATH, options=chrome_options)
-        # self.driver.get('https://www.betfair.com/exchange/plus/inplay/football')
         self.driver.wait = WebDriverWait (self.driver, 7)
+        # self.driver.get('https://www.betfair.com/exchange/plus/inplay/football')
 
 
     def tearDown(self):
@@ -39,7 +40,7 @@ class BFSearch():
                 dell = list_.pop()[1::]
                 dell = self.price_del_coma (dell)
                 list_.append (dell)
-                if str(list_[:1]) not in ['ПЕР', 'КОНЕЦ']:
+                if str(list_[:1]) not in self.list_play:
                     dell = int (list_.pop (0)[:-1])
                     dell_2 = int (list_.pop (0)[1::])
                     sum_ = dell + dell_2
@@ -63,7 +64,7 @@ class BFSearch():
                 dell = list_.pop()[1::]
                 dell = self.price_del_coma(dell)
                 list_.append(dell)
-                if list_[0] not in ['ПЕР', 'КОНЕЦ']: # ['PER','1', '0', 'FC Kuusysi', 'FC Futura', '93']
+                if list_[0] not in self.list_play: # ['PER','1', '0', 'FC Kuusysi', 'FC Futura', '93']
                     dell = list_.pop(0)[:-1]
                     list_.append(dell)
                 else:
@@ -123,15 +124,18 @@ class BFSearch():
 
     def find_coupon_table(self):
         try:
-            driver = WebDriverWait(self.driver, 7)
             # driver = self.driver
             # driver.get ('https://www.betfair.com/exchange/plus/inplay/football')
-            result = driver.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'coupon-table')))
+            self.result = self.driver.wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'mod-link')))
             # result = self.res.find_elements_by_class_name('coupon-table')
-            print(result)
-            time.sleep(0.5)
-            elem = result[0]
-            self.elem = elem.find_elements_by_class_name('mod-link')
+            print(self.result)
+            # time.sleep(2)
+            self.elem = self.result[0]
+            # elem.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'mod-link')))
+            print()
+            # elem = elem.find_elements_by_class_name('mod-link')
+            self.elem = self.result
+            print(self.elem)
             # return elem
         except Exception as e:
             print ('find_coupon_table', e)
@@ -139,8 +143,7 @@ class BFSearch():
 
     def in_play(self):
         all_match_info = []
-        elem = self.elem
-        for i in elem:
+        for i in self.elem:
             list_ = []
 
             text = i.text
@@ -179,14 +182,14 @@ class BFSearch():
         print('All add to base')
 
     def click_gb(self):
-        driver = self.driver
-        driver.get('https://www.betfair.com/exchange/plus/inplay/football')
+        # driver = self.driver
+        self.driver.get('https://www.betfair.com/exchange/plus/inplay/football')
 
-
-        driver.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'ssc-hls'))).click()
+        self.driver.wait = WebDriverWait (self.driver, 2)
+        self.driver.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'ssc-hls'))).click()
         # driver.find_element_by_class_name('ssc-ie').click()
-        driver.find_element_by_class_name('ssc-en_GB').click()
-
+        self.driver.find_element_by_class_name('ssc-en_GB').click()
+        self.driver.switch_to.window(self.driver.current_window_handle)
 
         # self.driver.find_element_by_class_name('ssc-hls').click()
 
