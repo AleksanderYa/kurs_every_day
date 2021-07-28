@@ -89,9 +89,11 @@ WSGI_APPLICATION = 'T.wsgi.application'
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'test_db',
-        'USER':'root',  
-        'PASSWORD':'2211',
+        # 'NAME': 'test_db',
+        'NAME': 'bf',
+        'USER':'root',
+        # 'PASSWORD':'2211',
+        'PASSWORD':'37112202',
         'HOST':'localhost',  
         'PORT':'3306',
         'OPTIONS': {'charset': 'utf8mb4'}
@@ -135,3 +137,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+

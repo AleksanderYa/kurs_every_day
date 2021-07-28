@@ -1,4 +1,4 @@
-from  bf.selen_worker import BFSearch
+# from  bf.selen_worker import BFSearch
 #
 # bf_search = BFSearch()
 # bf_search.setUp()
@@ -16,19 +16,21 @@ from  bf.selen_worker import BFSearch
 
 from bf.function_list import BFSearch
 
-go = BFSearch()
+def main():
+    go = BFSearch()
 
-go.setUp()
-go.click_gb()
-go.find_coupon_table()
-go.find_mod_link()
-go.in_play()
-# go.find_text()
-go.append_to_db()
-go.tearDown()
+    go.setUp()
+    go.click_gb()
+    go.find_coupon_table()
+    go.find_mod_link_inplay()
+    go.in_play()
+    # go.find_text()
+    go.append_to_db()
+    go.tearDown()
 
 
-
+if __name__ == '__main__':
+    main()
 
 
 
