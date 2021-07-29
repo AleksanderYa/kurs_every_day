@@ -19,7 +19,9 @@ from bf import  views  as views_bf
 
 urlpatterns = [
 
-    path('start/', views_bf.start),
-    path('shed/', views_bf.shedullers),
+    path('start_monitoring/', views_bf.start),
+    path('stop_monitoring/', views_bf.stop),
+    # path('shed/', views_bf.shedullers),
+    path('index/', views_bf.index)
 
 ]
