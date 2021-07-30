@@ -7,6 +7,9 @@ from bf.models import InPlay
 # admin.site.register(PostModel)
 @admin.register(InPlay)
 class AdminInPlay(admin.ModelAdmin):
-    list_display = ['id', 'runner_home', 'runner_away', 'football_liga', 'time_inplay']
+    list_display = ['id', 'time_inplay', 'amaunt_match', 'runner_home', 'runner_away', 'football_liga' ]
     list_display_links = ['id', 'runner_home', 'runner_away', 'football_liga']
     ordering = ('-id',)
+    search_fields = ['id', 'time_inplay', 'amaunt_match', 'runner_home', 'runner_away', 'football_liga' ]
+    
+   

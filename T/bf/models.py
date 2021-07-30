@@ -10,5 +10,11 @@ class InPlay(models.Model):
     runner_away = models.CharField(max_length=50)
     football_liga = models.CharField(max_length=100, )
     url_match = models.CharField(max_length=500)
-
+    
+    class Meta:
+        verbose_name = 'Событие'
+        verbose_name_plural = 'События'
+    def __str__(self):
+        return self.amaunt_match
+    
 

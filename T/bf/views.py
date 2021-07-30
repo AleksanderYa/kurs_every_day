@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from bf.go_parse import main
 from schedule import every, repeat, run_pending
 from bf.go_parse import main
@@ -22,23 +22,19 @@ def index(request):
 def start(request):
     global START
     START = True
-    res = {
-        'start': START
-    }
-    @repeat(every(1).minutes)
+    @repeat(every(3).minutes)
     def job():
         print('Start shedule')
         main()
         print("I am all dane")
+
     while START:
         run_pending()
         time.sleep(10)
-    return render(request, 'bf/index.html', res)
+    return redirect('/index/')
 
 def stop(request):
     global START
     START = False
-    res = {
-        'start': START
-    }
-    return render(request,'bf/index.html', res)
+ 
+    return redirect('/index/')
