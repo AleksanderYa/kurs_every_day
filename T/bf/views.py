@@ -22,7 +22,7 @@ def index(request):
 def start(request):
     global START
     START = True
-    @repeat(every(3).minutes)
+    @repeat(every(5).minutes)
     def job():
         print('Start shedule')
         main()

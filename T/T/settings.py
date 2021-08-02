@@ -32,8 +32,10 @@ ALLOWED_HOSTS = ['127.0.0.1']
 
 INSTALLED_APPS = [
     # 'rest_framework',
-
+    'django_extensions',
+    'django_q',
     'bf.apps.BfConfig',
+    'tasker.apps.TaskerConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -99,6 +101,26 @@ DATABASES = {
         'OPTIONS': {'charset': 'utf8mb4'}
     }  
 }  
+
+# django_q
+
+Q_CLUSTER = {
+    'scheduler':False,
+    'name': 'T',
+    'workers': 8,
+    'recycle': 500,
+    'timeout': 60,
+    'compress': True,
+    'save_limit': 250,
+    'queue_limit': 500,
+    'cpu_affinity': 1,
+    'label': 'Django Q',
+    'redis': {
+        'host': '127.0.0.1',
+        'port': 6379,
+        'db': 0, }
+
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

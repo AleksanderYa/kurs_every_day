@@ -14,6 +14,7 @@ class InPlay(models.Model):
     class Meta:
         verbose_name = 'Событие'
         verbose_name_plural = 'События'
+        
     def __str__(self):
         return self.amaunt_match
     

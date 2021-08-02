@@ -22,6 +22,7 @@ urlpatterns = [
 #    path('show/',  views.show),  
     path('admin/', admin.site.urls),
     path('', include('bf.urls')),
+    path('tasker/', include('tasker.urls')),
 # #    path('index/', views.index),
 #     path('testy/', include('testy.urls')),
 #     path('', include('quickstart.urls')),

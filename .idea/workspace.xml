@@ -21,19 +21,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2870b737-c4a2-4264-a7a0-63b29e1a3847" name="Default Changelist" comment="fixup! add PrivatBank">
-      <change afterPath="$PROJECT_DIR$/T/bf/templates/bf/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/T/bf/templates/bf/button.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/T/bf/templates/bf/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/T/bf/templates/bf/mirror.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/T/bf/templates/bf/navbar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/T/bf/templates/bf/tested.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kurs_every_day.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Django_Lib.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/T/tasker/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/T/tasker/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/T/tasker/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/T/tasker/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/T/tasker/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/T/tasker/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/T/tasker/todo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/T/tasker/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/T/tasker/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/T/tasker/work.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T/bf/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/T/bf/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T/bf/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/T/bf/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T/T/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/T/T/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T/T/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/T/T/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T/bf/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/T/bf/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/T/bf/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/T/bf/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T/quickstart/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/T/quickstart/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirments.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirments.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +61,7 @@
   </component>
   <component name="JupyterTrust" id="42a5eb2a-7b91-4834-9540-a8498decc85b" />
   <component name="ProjectId" id="1ui04eSmkEgZ9Yknrco9mfB3O7V" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -264,6 +271,7 @@
       <workItem from="1627460778446" duration="511000" />
       <workItem from="1627463085435" duration="11813000" />
       <workItem from="1627541927900" duration="13449000" />
+      <workItem from="1627886702656" duration="14129000" />
     </task>
     <task id="LOCAL-00001" summary="add PrivatBank">
       <created>1625143052429</created>
