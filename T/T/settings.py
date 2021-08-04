@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 
 INSTALLED_APPS = [
     # 'rest_framework',
-
+    'django_q',
     'bf.apps.BfConfig',
 
     'django.contrib.admin',
@@ -77,6 +77,30 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'T.wsgi.application'
+
+# django_q config
+Q_CLUSTER = {
+    'name': 'T',
+    'workers': 8,
+    'recycle': 500,
+    'timeout': 60,
+    'compress': True,
+    'save_limit': 250,
+    'queue_limit': 500,
+    'cpu_affinity': 1,
+    'label': 'Django Q',
+    'redis': {
+        'host': 'localhost',
+        'port': 6379,
+        'db': 0,
+        'password': None,
+        'socket_timeout': None,
+        'charset': 'utf-8',
+        'errors': 'strict',
+        'unix_socket_path': None
+    }
+}
+
 
 
 # Database
