@@ -105,7 +105,6 @@ DATABASES = {
 # django_q
 
 Q_CLUSTER = {
-    'scheduler':False,
     'name': 'T',
     'workers': 8,
     'recycle': 500,
