@@ -31,9 +31,8 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    # 'rest_framework',
+    'currency.apps.CurrencyConfig',
     'django_q',
-    'bf.apps.BfConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -78,28 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'T.wsgi.application'
 
-# django_q config
-Q_CLUSTER = {
-    'name': 'T',
-    'workers': 8,
-    'recycle': 500,
-    'timeout': 60,
-    'compress': True,
-    'save_limit': 250,
-    'queue_limit': 500,
-    'cpu_affinity': 1,
-    'label': 'Django Q',
-    'redis': {
-        'host': 'localhost',
-        'port': 6379,
-        'db': 0,
-        'password': None,
-        'socket_timeout': None,
-        'charset': 'utf-8',
-        'errors': 'strict',
-        'unix_socket_path': None
-    }
-}
 
 
 
@@ -113,14 +90,41 @@ Q_CLUSTER = {
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'test_db',
-        'USER':'root',  
+        'NAME': 'kurs_valut',
+        # 'NAME': 'bf',
+        'USER':'root',
         'PASSWORD':'2211',
+        # 'PASSWORD':'37112202',
         'HOST':'localhost',  
         'PORT':'3306',
         'OPTIONS': {'charset': 'utf8mb4'}
     }  
 }  
+
+# django_q
+
+Q_CLUSTER = {
+    # 'name': 'T',
+    # 'workers': 8,
+    # 'recycle': 500,
+    # 'timeout': 60,
+    # 'compress': True,
+    # 'save_limit': 250,
+    # 'queue_limit': 500,
+    # 'cpu_affinity': 1,
+    # 'label': 'Django Q',
+    # 'redis': {
+    #     'host': '127.0.0.1',
+    #     'port': 6379,
+    #     'db': 0, }
+    'name': 'DjangORM',
+    'workers': 4,
+    'timeout': 90,
+    'retry': 120,
+    'queue_limit': 50,
+    'bulk': 10,
+    'orm': 'default'
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -146,7 +150,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
@@ -159,3 +163,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+#
+# from currency.get_kurs_oop import GetKurs
+#
+# a = GetKurs()
+# a.to_base()

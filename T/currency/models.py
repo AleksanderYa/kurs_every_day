@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-
+# import os
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "T.settings")
 
 class Currency(models.Model):
     date = models.DateTimeField(auto_now=True)

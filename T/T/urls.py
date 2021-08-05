@@ -18,12 +18,5 @@ from django.urls import path, re_path, include
 #from testy import  views    
 
 urlpatterns = [
-    # path('one/',  include('currency.urls')),
-#    path('show/',  views.show),  
-    path('admin/', admin.site.urls),
-# #    path('index/', views.index),
-#     path('testy/', include('testy.urls')),
-#     path('', include('quickstart.urls')),
-#     path('api/', include('rest_framework.urls')),
-#     re_path(r'^', include('polls.urls')),
+    path('admin/', admin.site.urls)
 ]
