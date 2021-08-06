@@ -1,4 +1,3 @@
-import time
 import requests
 
 
@@ -10,3 +9,6 @@ def send_message(bot_message):
     response = requests.get(send_text)
 
     return response.json()
+
+
+

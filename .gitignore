@@ -162,15 +162,4 @@ cython_debug/
 
 T/__pycache__/
 
-
-<<<<<<< HEAD
-/venv/
-venv
-T/bf/venv/
-=======
-/bf/.ipynb_checkpoints/Untitled-checkpoint.ipynb
-
-T/__pycache__/__init__.cpython-36.pyc
-/T/bf/.ipynb_checkpoints/
-/T/bf/migrations/
->>>>>>> 8807fdbd91ecbe96725171e6a5d54572538b8c89
+.idea
