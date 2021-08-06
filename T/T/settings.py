@@ -91,10 +91,9 @@ DATABASES = {
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
         'NAME': 'kurs_valut',
-        # 'NAME': 'bf',
         'USER':'root',
-        'PASSWORD':'2211',
-        # 'PASSWORD':'37112202',
+        # 'PASSWORD':'2211',
+        'PASSWORD':'37112202',
         'HOST':'localhost',  
         'PORT':'3306',
         'OPTIONS': {'charset': 'utf8mb4'}
