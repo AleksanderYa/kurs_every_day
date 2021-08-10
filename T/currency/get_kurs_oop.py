@@ -47,17 +47,6 @@ class GetKurs():
         except Exception as e:
             print(e)
 
-    # def get_privat_json(self):
-    #     url = self.get_privat()
-    #     htmltext = url.text
-    #     self.privat_json = json.loads(htmltext)
-    #     return self.privat_json
-    #
-    # def get_nbu_json(self):
-    #     url = self.get_nbu()
-    #     htmltext = url.text
-    #     self.nbu_json = json.loads(htmltext)
-    #     return self.nbu_json
 
     def get_nbu_currency(self):
         try:
