@@ -21,31 +21,48 @@ class GetKurs():
             return self.month
 
     def get_privat(self):
-        site = f'https://api.privatbank.ua/p24api/exchange_rates?json&date={self.date.day}.{self.fucken_datetime()}.{self.date.year}'  # 01.07.2021
-        url = requests.get(site)
-        return url
+        try:
+            site = f'https://api.privatbank.ua/p24api/exchange_rates?json&date={self.date.day}.{self.fucken_datetime()}.{self.date.year}'  # 01.07.2021
+            url = requests.get(site)
+            url = url.json()
+            return url
+        except Exception as e:
+            print(e)
 
     def get_nbu(self):
-        site = f'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date={self.date.year}{self.fucken_datetime()}{self.date.day}&json'  # 20210609
-        url = requests.get(site)
-        return url
+        try:
+            site = f'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date={self.date.year}{self.fucken_datetime()}{self.date.day}&json'  # 20210609
+            url = requests.get(site)
+            url = url.json()
+            return url
+        except Exception as e:
+            print(e)
 
-    def get_privat_json(self):
-        url = self.get_privat()
-        htmltext = url.text
-        self.privat_json = json.loads(htmltext)
-        return self.privat_json
+    def get_mono(self):
+        try:
+            site = 'https://api.monobank.ua/bank/currency'
+            url = requests.get(site)
+            url = url.json()
+            return url
+        except Exception as e:
+            print(e)
 
-    def get_nbu_json(self):
-        url = self.get_nbu()
-        htmltext = url.text
-        self.nbu_json = json.loads(htmltext)
-        return self.nbu_json
+    # def get_privat_json(self):
+    #     url = self.get_privat()
+    #     htmltext = url.text
+    #     self.privat_json = json.loads(htmltext)
+    #     return self.privat_json
+    #
+    # def get_nbu_json(self):
+    #     url = self.get_nbu()
+    #     htmltext = url.text
+    #     self.nbu_json = json.loads(htmltext)
+    #     return self.nbu_json
 
     def get_nbu_currency(self):
         try:
             currency_base = {}
-            for i in self.get_nbu_json():
+            for i in self.get_nbu():
                 # {'r030': 840, 'txt': 'Долар США', 'rate': 26.8411, 'cc': 'USD', 'exchangedate': '04.08.2021'}
                 # {'r030': 978, 'txt': 'Євро', 'rate': 31.8913, 'cc': 'EUR', 'exchangedate': '04.08.2021'}
                 if i['cc'] == 'EUR':
@@ -67,7 +84,7 @@ class GetKurs():
     def get_privat_currency(self):
         try:
             carrency_base = {}
-            ex_text = self.get_privat_json()
+            ex_text = self.get_privat()
             ex_text = ex_text['exchangeRate']
             ex_text.pop(0)
             for i in ex_text:
@@ -90,10 +107,18 @@ class GetKurs():
         except Exception as e:
             print(e)
 
+    def get_mono_currency(self):
+        currency_base = {}
+        mono_currency = self.get_mono()
+        currency_base['USD'] = mono_currency[0]
+        currency_base['EUR'] = mono_currency[1]
+        return currency_base
+
     def to_base(self):
         try:
             nbu = self.get_nbu_currency()
             privat = self.get_privat_currency()
+            mono = self.get_mono_currency()
             obj = Currency()
             obj.nbu_eur = nbu['EUR']['sale']
             obj.nbu_usd = nbu['USD']['sale']
@@ -101,6 +126,10 @@ class GetKurs():
             obj.privat_eur_bay = privat['EUR']['bay']
             obj.privat_usd_sale = privat['USD']['sale']
             obj.privat_usd_bay = privat['USD']['bay']
+            obj.mono_eur_sale = mono['EUR']['rateSell']
+            obj.mono_eur_bay = mono['EUR']['rateBuy']
+            obj.mono_usd_sale = mono['USD']['rateSell']
+            obj.mono_usd_bay = mono['USD']['rateBuy']
             obj.save()
             return print('All dane!Add to base')
         except Exception as e:
