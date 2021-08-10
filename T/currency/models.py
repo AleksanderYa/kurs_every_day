@@ -5,24 +5,25 @@ from django.utils import timezone
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "T.settings")
 
 class Currency(models.Model):
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField(auto_created=True, auto_now=True)
     nbu_usd = models.FloatField()
     nbu_eur = models.FloatField()
     privat_usd_sale = models.FloatField()
     privat_usd_bay = models.FloatField()
     privat_eur_sale = models.FloatField()
     privat_eur_bay = models.FloatField()
+    mono_usd_sale = models.FloatField()
+    mono_usd_bay = models.FloatField()
+    mono_eur_sale = models.FloatField()
+    mono_eur_bay = models.FloatField()
 
     def __str__(self):
         return f'Date: {str(self.date)[0:10]} Price: {self.nbu_usd} /{self.nbu_eur} '
 
     class Meta:
-        # verbose_name = 'Курсы валют'
-        verbose_name_plural = 'Курс валют'
-        ordering = [
-            'nbu_usd',
-            'nbu_eur'
-        ]
+        verbose_name = 'Курс валют'
+        verbose_name_plural = 'Курсы валют'
+        ordering = ['-date']
 
 
 
