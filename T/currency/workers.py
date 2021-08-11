@@ -7,7 +7,6 @@ class ChangeDate:
     def __init__(self):
         self.date = datetime.now()
 
-
     def correct_month(self):
         date_month= str(self.date.month)
         if len(date_month) < 2:
@@ -24,8 +23,8 @@ class ChangeDate:
         res = f'{self.date.year}{self.correct_month()}{self.date.day}'
         return res
 
-class BaseBankWorker(metaclass=ABCMeta): # Not need to use metaclass
-    def privat_exchangeRate_list(func):
+class BaseBankWorker(metaclass=ABCMeta): # Not need to use metaclass, or if need how ins doing?
+    def privat_exchangeRate_list(func): # Nikolas, can i do that with decorators and use an exception??
         def inner(*args, **kwargs):
             try:
                 return func(*args, **kwargs)['exchangeRate']
