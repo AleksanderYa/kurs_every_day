@@ -47,7 +47,7 @@ class PrivatWorker(BaseBankWorker):
     SITE = f'https://api.privatbank.ua/p24api/exchange_rates?json&date={date}'
 
 
-class NbuWorkers(BaseBankWorker):
+class NbuWorker(BaseBankWorker):
     date = ChangeDate()
     date = date.date_to_nbu()
     SITE = f'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=' \
@@ -71,7 +71,7 @@ if __name__ == '__main__':
     print(type(bb))
     print(bb)
 
-    c = NbuWorkers()
+    c = NbuWorker()
     cc = c.get_currency_json()
     print(type(cc))
     print(cc)
