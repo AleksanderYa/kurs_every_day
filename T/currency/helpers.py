@@ -5,9 +5,6 @@ class BaseHelper(ABC):
     def __init__(self):
         self.create_obj = CreateObj()
 
-    # @abstractmethod
-    # def create_currency_obj(self, obj):
-    #     raise NotImplementedError
     def if_el(self, obj):
         raise NotImplementedError
 
