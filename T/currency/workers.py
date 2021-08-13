@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+from currency.helpers import PrivatHelper, NbuHelper, MonoHelper
 from datetime import datetime
 import requests
 
@@ -23,14 +24,19 @@ class ChangeDate:
         res = f'{self.date.year}{self.correct_month()}{self.date.day}'
         return res
 
-class BaseBankWorker(metaclass=ABCMeta): # Not need to use metaclass, or if need how ins doing?
-    def privat_exchangeRate_list(func): # Nikolas, can i do that with decorators and use an exception??
+class BaseBankWorker:
+    def privat_exchangeRate_list(func):
         def inner(*args, **kwargs):
             try:
                 return func(*args, **kwargs)['exchangeRate']
-            except TypeError:
+            except Exception:
                 return func(*args, **kwargs)
         return inner
+
+    def get(self):
+        res = self.get_currency_json()
+        res = self.helper.create_currency_obj(res)
+        return res
 
     @privat_exchangeRate_list
     def get_currency_json(self):
@@ -42,37 +48,35 @@ class BaseBankWorker(metaclass=ABCMeta): # Not need to use metaclass, or if need
             print(e)
 
 class PrivatWorker(BaseBankWorker):
-    date = ChangeDate()
-    date = date.date_to_privat()
-    SITE = f'https://api.privatbank.ua/p24api/exchange_rates?json&date={date}'
-
+    def __init__(self):
+        self.helper = PrivatHelper()
+        self.date = ChangeDate()
+        self.date = self.date.date_to_privat()
+        self.SITE = f'https://api.privatbank.ua/p24api/exchange_rates?json&date={self.date}'
 
 class NbuWorker(BaseBankWorker):
-    date = ChangeDate()
-    date = date.date_to_nbu()
-    SITE = f'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=' \
-           f'{date}&json'
-
+    def __init__(self):
+        self.date = ChangeDate()
+        self.helper = NbuHelper()
+        self.date = self.date.date_to_nbu()
+        self.SITE = f'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=' \
+           f'{self.date}&json'
 
 class MonoWorker(BaseBankWorker):
-    SITE = 'https://api.monobank.ua/bank/currency'
+    def __init__(self):
+        self.helper = MonoHelper()
+        self.SITE = 'https://api.monobank.ua/bank/currency'
 
 
 
 
 if __name__ == '__main__':
     a = MonoWorker()
-    aa = a.get_currency_json()
-    print(type(aa))
-    print(aa)
-
+    a.get()
+    print('------------------------------')
     b = PrivatWorker()
-    bb = b.get_currency_json()
-    print(type(bb))
-    print(bb)
-
+    b.get()
+    print('------------------------------')
     c = NbuWorker()
-    cc = c.get_currency_json()
-    print(type(cc))
-    print(cc)
-
+    c.get()
+#
