@@ -11,7 +11,9 @@ from currency.models import Currency
 
 
 class GetKurs():
-    date = datetime.now()
+    def __init__(self):
+        self.date = datetime.now()
+
     def fucken_datetime(self):
         month = str(self.date.month)
         if len(month) < 2:

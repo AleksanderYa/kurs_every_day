@@ -1,4 +1,3 @@
-from abc import ABCMeta, abstractmethod
 from currency.helpers import PrivatHelper, NbuHelper, MonoHelper
 from datetime import datetime
 import requests
@@ -45,6 +44,7 @@ class BaseBankWorker:
             url = url.json()
             return url
         except Exception as e:
+            pass
             print(e)
 
 class PrivatWorker(BaseBankWorker):
@@ -53,6 +53,7 @@ class PrivatWorker(BaseBankWorker):
         self.date = ChangeDate()
         self.date = self.date.date_to_privat()
         self.SITE = f'https://api.privatbank.ua/p24api/exchange_rates?json&date={self.date}'
+
 
 class NbuWorker(BaseBankWorker):
     def __init__(self):
@@ -72,11 +73,17 @@ class MonoWorker(BaseBankWorker):
 
 if __name__ == '__main__':
     a = MonoWorker()
-    a.get()
+    aa = a.get()
+    print(f'USD {aa.usd_sale}/{aa.usd_buy}\nEURO {aa.euro_sale}/{aa.euro_buy}')
+
     print('------------------------------')
     b = PrivatWorker()
-    b.get()
+    bb = b.get()
+    print(f'USD {bb.usd_sale}/{bb.usd_buy}\nEURO {bb.euro_sale}/{bb.euro_buy}')
+
     print('------------------------------')
     c = NbuWorker()
-    c.get()
+    cc = c.get()
+    print(f'USD {cc.usd_sale}/{cc.usd_buy}\nEURO {cc.euro_sale}/{cc.euro_buy}')
+
 #
