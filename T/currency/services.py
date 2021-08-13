@@ -1,5 +1,4 @@
-from currency.workers import PrivatWorker, MonoWorker, NbuWorkers
-
+from django_q.tasks import Chain, Schedule
 
 class ExchangeRateService():
     pass
