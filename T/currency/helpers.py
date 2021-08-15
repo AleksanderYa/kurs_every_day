@@ -9,44 +9,47 @@ class BaseHelper(ABC):
         raise NotImplementedError
 
     def create_currency_obj(self, obj):
+        obj = obj
         try:
             for i in obj:
                 try:
                     self.if_el(i)
-                except:
-                    pass
+                except Exception as e:
+                    print(e)
         finally:
             return self.create_obj
 
 class CreateObj:
 #####
     def __init__(self):
-        self.usd_sale = 0
-        self.usd_buy = 0
-        self.euro_sale = 0
-        self.euro_buy = 0
+        self.usd_sale = float()
+        self.usd_buy = float()
+        self.euro_sale = float()
+        self.euro_buy = float()
 
 class PrivatHelper(BaseHelper):
 #####
     def if_el(self, i):
         if i['currency'] == 'USD':
-            self.create_obj.usd_buy = i['saleRate']
-            self.create_obj.usd_sale = i['purchaseRate']
+            self.create_obj.usd_buy = float(i['saleRate'])
+            self.create_obj.usd_sale = float(i['purchaseRate'])
         elif i['currency'] == 'EUR':
-            self.create_obj.euro_buy = i['saleRate']
-            self.create_obj.euro_sale = i['purchaseRate']
+            self.create_obj.euro_buy = float(i['saleRate'])
+            self.create_obj.euro_sale = float(i['purchaseRate'])
 
 
 class MonoHelper(BaseHelper):
 #####
     def if_el(self, i):
-        if i['currencyCodeA'] == 840 and i['currencyCodeB'] == 980:
-            self.create_obj.usd_buy = i['rateSell']
-            self.create_obj.usd_sale = i['rateBuy']
-        elif i['currencyCodeA'] == 978 and i['currencyCodeB'] == 980:
-            self.create_obj.euro_buy = i['rateSell']
-            self.create_obj.euro_sale = i['rateBuy']
-
+        try:
+            if i['currencyCodeA'] == 840 and i['currencyCodeB'] == 980:
+                self.create_obj.usd_buy = float(i['rateSell'])
+                self.create_obj.usd_sale = float(i['rateBuy'])
+            elif i['currencyCodeA'] == 978 and i['currencyCodeB'] == 980:
+                self.create_obj.euro_buy = float(i['rateSell'])
+                self.create_obj.euro_sale = float(i['rateBuy'])
+        except Exception as e:
+            print(e)
 class NbuHelper(BaseHelper):
 #####
     def if_el(self, i):
@@ -57,10 +60,7 @@ class NbuHelper(BaseHelper):
             # self.create_obj.euro_buy = i['saleRate']
             self.create_obj.euro_sale = i['rate']
 
-if __name__ == '__main__':
-    a = PrivatHelper()
-    b = MonoHelper()
-    c = NbuHelper()
+
 
 
 
