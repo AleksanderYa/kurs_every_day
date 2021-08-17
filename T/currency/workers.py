@@ -1,6 +1,12 @@
-from currency.helpers import PrivatHelper, NbuHelper, MonoHelper
-from datetime import datetime
 import requests
+from datetime import datetime
+
+from currency.parametrs import PRIBAT_BANK_URL
+from currency.parametrs import NBU_BANK_URL
+from currency.parametrs import MONO_BANK_URL
+from currency.helpers import PrivatHelper
+from currency.helpers import NbuHelper
+from currency.helpers import MonoHelper
 
 
 class ChangeDate:
@@ -52,7 +58,7 @@ class PrivatWorker(BaseBankWorker):
         self.helper = PrivatHelper()
         self.date = ChangeDate()
         self.date = self.date.date_to_privat()
-        self.SITE = f'https://api.privatbank.ua/p24api/exchange_rates?json&date={self.date}'
+        self.SITE = PRIBAT_BANK_URL + self.date
 
 
 class NbuWorker(BaseBankWorker):
@@ -60,13 +66,12 @@ class NbuWorker(BaseBankWorker):
         self.date = ChangeDate()
         self.helper = NbuHelper()
         self.date = self.date.date_to_nbu()
-        self.SITE = f'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=' \
-           f'{self.date}&json'
+        self.SITE = NBU_BANK_URL + self.date + '&json'
 
 class MonoWorker(BaseBankWorker):
     def __init__(self):
         self.helper = MonoHelper()
-        self.SITE = 'https://api.monobank.ua/bank/currency'
+        self.SITE = MONO_BANK_URL
 
 
 

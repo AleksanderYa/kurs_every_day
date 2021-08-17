@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 
 class BaseHelper(ABC):
 #####
@@ -55,9 +55,7 @@ class NbuHelper(BaseHelper):
     def if_el(self, i):
         if i['cc'] == 'USD':
             self.create_obj.usd_sale = i['rate']
-            # self.create_obj.usd_sale = i['purchaseRate']
         elif i['cc'] == 'EUR':
-            # self.create_obj.euro_buy = i['saleRate']
             self.create_obj.euro_sale = i['rate']
 
 

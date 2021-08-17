@@ -5,7 +5,9 @@ from datetime import datetime
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "T.settings")
 django.setup()
 from currency.models import Currency
-from django_q.tasks import Chain, schedule
+from django_q.tasks import Chain
+from django_q.tasks import schedule
+
 
 
 
@@ -17,7 +19,7 @@ class ExchangeRateService:
                    f'*ПриватБанк*\n*USD  {obj.privat_usd_bay} / {obj.privat_usd_sale}*\n' \
                    f'*EURO  {obj.privat_eur_bay} / {obj.privat_eur_sale}*\n\n' \
                    f'*MonoBank*\n*USD {obj.mono_usd_bay} / {obj.mono_usd_sale}*\n*EURO {obj.mono_eur_bay} / {obj.mono_eur_sale}*'
-        chain = Chain(cached=True)
+        chain = Chain(cached=True, sync=True)
         chain.append('currency.repositories.ExchangeRateRepository.create_db_obj')
         chain.append('currency.services.TelegramBotService.send_message', messsage)
         chain.run()
