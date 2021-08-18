@@ -4,11 +4,13 @@ import requests
 from datetime import datetime
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "T.settings")
 django.setup()
-from currency.models import Currency
+
 from django_q.tasks import Chain
 from django_q.tasks import schedule
-
-
+from currency.parametrs import TELEGRAM_BOT_TOKEN
+from currency.parametrs import TELEGRAM_URL
+from currency.parametrs import TELEGRAM_CHAT_IP
+from currency.models import Currency
 
 
 class ExchangeRateService:
@@ -39,11 +41,9 @@ class ExchangeRateService:
 class TelegramBotService:
     @staticmethod
     def send_message(bot_message):
-        bot_token = '1841807907:AAElQcKWBvFg8JRMJilil0kqi6nJ5b_TSKM'
-        bot_chatID = '1075097936'
-        send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?' \
-                    'chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
-        response = requests.get(send_text)
+        send_text = TELEGRAM_URL.replace('TOKEN', TELEGRAM_BOT_TOKEN)
+        send_text = send_text.replace('CHATID', TELEGRAM_CHAT_IP)
+        response = requests.get(send_text + bot_message)
         return response.json()
 
 if __name__ == '__main__':

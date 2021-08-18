@@ -1,5 +1,12 @@
 from abc import ABC
 
+from currency.parametrs import CURRENCY_CODE_EUR
+from currency.parametrs import CURRENCY_CODE_USD
+from currency.parametrs import CURRENCY_CODE_SOMESHIT
+from currency.parametrs import USD
+from currency.parametrs import EUR
+
+
 class BaseHelper(ABC):
 #####
     def __init__(self):
@@ -30,32 +37,32 @@ class CreateObj:
 class PrivatHelper(BaseHelper):
 #####
     def if_el(self, i):
-        if i['currency'] == 'USD':
+        if i['currency'] == USD:
             self.create_obj.usd_buy = float(i['saleRate'])
             self.create_obj.usd_sale = float(i['purchaseRate'])
-        elif i['currency'] == 'EUR':
+        elif i['currency'] == EUR:
             self.create_obj.euro_buy = float(i['saleRate'])
             self.create_obj.euro_sale = float(i['purchaseRate'])
-
 
 class MonoHelper(BaseHelper):
 #####
     def if_el(self, i):
         try:
-            if i['currencyCodeA'] == 840 and i['currencyCodeB'] == 980:
+            if i['currencyCodeA'] == CURRENCY_CODE_USD and i['currencyCodeB'] == CURRENCY_CODE_SOMESHIT:
                 self.create_obj.usd_buy = float(i['rateSell'])
                 self.create_obj.usd_sale = float(i['rateBuy'])
-            elif i['currencyCodeA'] == 978 and i['currencyCodeB'] == 980:
+            elif i['currencyCodeA'] == CURRENCY_CODE_EUR and i['currencyCodeB'] == CURRENCY_CODE_SOMESHIT:
                 self.create_obj.euro_buy = float(i['rateSell'])
                 self.create_obj.euro_sale = float(i['rateBuy'])
         except Exception as e:
             print(e)
+
 class NbuHelper(BaseHelper):
 #####
     def if_el(self, i):
-        if i['cc'] == 'USD':
+        if i['cc'] == USD:
             self.create_obj.usd_sale = i['rate']
-        elif i['cc'] == 'EUR':
+        elif i['cc'] == EUR:
             self.create_obj.euro_sale = i['rate']
 
 
