@@ -3,5 +3,6 @@ from currency.views import ExchangeRateController
     
 
 urlpatterns = [
-    path('bankrates/', ExchangeRateController.bunk_rates)
+    path('bankrates/', ExchangeRateController.bunk_rates),
+    path('test/', ExchangeRateController.test),
 ]
