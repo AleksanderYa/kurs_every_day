@@ -1,0 +1,30 @@
+{% extends 'currency/base.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <select name="timer_time" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+      <option selected> Select work time</option>
+      <option value="5">5 min</option>
+      <option value="10">10 min</option>
+      <option value="15">15 min</option>
+      <option value="20">20 min</option>
+      <option value="25">25 min</option>
+      <option value="30">30 min</option>
+      <option value="35">35 min</option>
+      <option value="40">40 min</option>
+      <option value="45">45 min</option>
+      <option value="50">50 min</option>
+      <option value="55">55 min</option>
+      <option value="60">60 min</option>
+
+      <input type="submit" value="Send" >
+    </select>
+</form>
+
+<div>
+    <h3>
+        {{ text }}
+    </h3>
+</div>
+{% endblock %}
