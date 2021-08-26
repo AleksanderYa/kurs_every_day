@@ -1,0 +1,42 @@
+{% extends 'currency/base.html' %}
+
+{% block content %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Date</th>
+          <th scope="col">NBU USD sale</th>
+          <th scope="col">NBU EURO sale</th>
+          <th scope="col">PrivatBank USD bay</th>
+          <th scope="col">PrivatBank USD sale</th>
+          <th scope="col">PrivatBank EURO bay</th>
+          <th scope="col">PrivatBank EURO sale</th>
+          <th scope="col">MonoBank USD bay</th>
+          <th scope="col">MonoBank USD sale</th>
+          <th scope="col">MonoBank EURO bay</th>
+          <th scope="col">MonoBank EURO sale</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for i in enum %}
+        <tr>
+            {% for ii in i %}
+            <th scope="row">  {{ ii }} </th>
+
+            <td>{{ ii.privat_usd_sale }}</td>
+            <td>{{ ii.privat_usd_bay }}</td>
+           {%  endfor %}
+        </tr>
+          {% endfor %}
+
+      </tbody>
+    </table>
+{% endblock %}
+
+
+
+
+
+
+
