@@ -18,12 +18,15 @@ class ExchangeRateController:
 
     @staticmethod
     def timer(request):
+        req = request.POST.get('timer_time') == 'Select work time'
         if request.method == "POST":
             time = request.POST.get('timer_time')
             text = {
-                'text': f'Установленно время работы бота каждые {time} минут'
+                'text': f'Установлено...\nЧерез каждые {time} минут будет сделано дело!'
             }
             return render(request, "currency/timer.html", text)
+        elif req:
+            return render (request, "currency/timer.html", {'text': 'Выберите время из списка выше'})
         else:
             text = {
                 'text': 'Время работы бота не установленно'
