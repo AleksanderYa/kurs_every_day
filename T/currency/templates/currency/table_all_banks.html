@@ -8,25 +8,31 @@
           <th scope="col">Date</th>
           <th scope="col">NBU USD sale</th>
           <th scope="col">NBU EURO sale</th>
-          <th scope="col">PrivatBank USD bay</th>
+          <th scope="col">PrivatBank USD buy</th>
           <th scope="col">PrivatBank USD sale</th>
-          <th scope="col">PrivatBank EURO bay</th>
+          <th scope="col">PrivatBank EURO buy</th>
           <th scope="col">PrivatBank EURO sale</th>
-          <th scope="col">MonoBank USD bay</th>
+          <th scope="col">MonoBank USD buy</th>
           <th scope="col">MonoBank USD sale</th>
-          <th scope="col">MonoBank EURO bay</th>
+          <th scope="col">MonoBank EURO buy</th>
           <th scope="col">MonoBank EURO sale</th>
         </tr>
       </thead>
       <tbody>
-          {% for i in enum %}
+          {% for ii in enum %}
         <tr>
-            {% for ii in i %}
-            <th scope="row">  {{ ii }} </th>
-
-            <td>{{ ii.privat_usd_sale }}</td>
-            <td>{{ ii.privat_usd_bay }}</td>
-           {%  endfor %}
+            <td>  {{ ii.0 }} </td>
+            <td>  {{ ii.1.date }} </td>
+            <td>  {{ ii.1.nbu_usd }} </td>
+            <td>  {{ ii.1.nbu_eur }} </td>
+            <td>  {{ ii.1.privat_usd_buy }} </td>
+            <td>  {{ ii.1.privat_usd_sale }} </td>
+            <td>  {{ ii.1.privat_eur_buy }} </td>
+            <td>  {{ ii.1.privat_eur_sale }} </td>
+            <td>  {{ ii.1.mono_usd_buy }} </td>
+            <td>  {{ ii.1.mono_usd_sale }} </td>
+            <td>  {{ ii.1.mono_eur_buy }} </td>
+            <td>  {{ ii.1.mono_eur_sale }} </td>
         </tr>
           {% endfor %}
 
