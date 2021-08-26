@@ -1,7 +1,18 @@
 from django.shortcuts import render, HttpResponse
 from currency.forms import UserForm
+from currency.models import Currency
 
 class ExchangeRateController:
+    @staticmethod
+    def get_all_banks(request):
+        base = Currency.objects.all()
+        enum =  enumerate(base)
+        return render(
+            request,
+            'currency/table_all_banks.html',
+            {'enum': enum}
+        )
+
     @staticmethod
     def bunk_rates(request):
         return render(request, 'currency/index.html')
@@ -32,7 +43,6 @@ class ExchangeRateController:
                 'text': 'Время работы бота не установленно'
             }
             return render(request, "currency/timer.html", text)
-
 
 
 
