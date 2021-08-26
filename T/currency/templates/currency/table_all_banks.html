@@ -1,27 +1,26 @@
-{% extends 'currency/base.html' %}
+{% extends 'currency/table.html' %}
 
-{% block content %}
-    <table class="table table-striped">
-      <thead>
+{% block thead %}
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">NBU USD sale</th>
+      <th scope="col">NBU EUR sale</th>
+      <th scope="col">PrivatBank USD buy</th>
+      <th scope="col">PrivatBank USD sale</th>
+      <th scope="col">PrivatBank EURO buy</th>
+      <th scope="col">PrivatBank EURO sale</th>
+      <th scope="col">MonoBank USD buy</th>
+      <th scope="col">MonoBank USD sale</th>
+      <th scope="col">MonoBank EURO buy</th>
+      <th scope="col">MonoBank EURO sale</th>
+    </tr>
+{% endblock %}
+
+{% block tbody %}
+    {% for ii in enum %}
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Date</th>
-          <th scope="col">NBU USD sale</th>
-          <th scope="col">NBU EURO sale</th>
-          <th scope="col">PrivatBank USD buy</th>
-          <th scope="col">PrivatBank USD sale</th>
-          <th scope="col">PrivatBank EURO buy</th>
-          <th scope="col">PrivatBank EURO sale</th>
-          <th scope="col">MonoBank USD buy</th>
-          <th scope="col">MonoBank USD sale</th>
-          <th scope="col">MonoBank EURO buy</th>
-          <th scope="col">MonoBank EURO sale</th>
-        </tr>
-      </thead>
-      <tbody>
-          {% for ii in enum %}
-        <tr>
-            <td>  {{ ii.0 }} </td>
+            <th>  {{ ii.0 }} </th>
             <td>  {{ ii.1.date }} </td>
             <td>  {{ ii.1.nbu_usd }} </td>
             <td>  {{ ii.1.nbu_eur }} </td>
@@ -34,15 +33,5 @@
             <td>  {{ ii.1.mono_eur_buy }} </td>
             <td>  {{ ii.1.mono_eur_sale }} </td>
         </tr>
-          {% endfor %}
-
-      </tbody>
-    </table>
+    {% endfor %}
 {% endblock %}
-
-
-
-
-
-
-
