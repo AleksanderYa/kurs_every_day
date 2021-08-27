@@ -1,5 +1,10 @@
 {% extends 'currency/base.html' %}
 
+{% block css_style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/table_all_banks.css' %}">
+{% endblock %}
+
 {% block content %}
     <div>
         <table class="table table-striped">

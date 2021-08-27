@@ -5,6 +5,6 @@ class ExchangeRateController:
         self.base = GetterExchangeRate.get()
 
     def get(self):
-        enum = enumerate(self.base)
+        enum = enumerate(self.base, 1)
         return enum
 
