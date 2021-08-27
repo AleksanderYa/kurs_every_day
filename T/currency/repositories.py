@@ -30,13 +30,14 @@ class ExchangeRateRepository:
         model.save()
         print('Dane!')
 
-
-def main():
-    ExchangeRateRepository.create_db_obj()
-
+class GetterExchangeRate:
+    @staticmethod
+    def get():
+        obj = Currency.objects.all()
+        return obj
 
 if __name__ == '__main__':
-    main()
+    ExchangeRateRepository.create_db_obj()
 
 
 

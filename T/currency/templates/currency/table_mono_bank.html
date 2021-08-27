@@ -4,8 +4,10 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Date</th>
+      <th scope="col">USD buy</th>
       <th scope="col">USD sale</th>
-      <th scope="col">EUR sale</th>
+      <th scope="col">EURO buy</th>
+      <th scope="col">EURO sale</th>
     </tr>
 {% endblock %}
 
@@ -14,9 +16,10 @@
         <tr>
             <th>  {{ ii.0 }} </th>
             <td>  {{ ii.1.date }} </td>
-            <td>  {{ ii.1.nbu_usd }} </td>
-            <td>  {{ ii.1.nbu_eur }} </td>
-
+            <td>  {{ ii.1.mono_usd_buy }} </td>
+            <td>  {{ ii.1.mono_usd_sale }} </td>
+            <td>  {{ ii.1.mono_eur_buy }} </td>
+            <td>  {{ ii.1.mono_eur_sale }} </td>
         </tr>
     {% endfor %}
 {% endblock %}
