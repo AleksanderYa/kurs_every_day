@@ -10,6 +10,6 @@ urlpatterns = [
     # path('exchangetimesetup/', ExchangeRateController.timer),
     # path('test/', ExchangeRateController.test),
     path('rates/', ExchangeAllRate.as_view()),
-    path ('rates/nbu/', ExchangeNBURate.as_view())
+    path ('rates/nbu', ExchangeNBURate.as_view())
 
 ]
