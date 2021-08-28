@@ -3,7 +3,9 @@ from django.views.generic.base import View
 
 from currency.controllers import ExchangeRateController
 
-
+'''
+test
+'''
 class ExchangeRateViews(View):
     def __init__(self):
         self.enum = ExchangeRateController()
