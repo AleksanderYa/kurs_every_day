@@ -1,7 +1,12 @@
-from django.urls import path
-from currency.views import ExchangeRateController
-    
+from django.urls import path, re_path
+from currency.views import ExchangeAllViews
+from currency.views import ExchangeNBUView
+from currency.views import ExchangeMonoView
+from currency.views import ExchangePrivatView
 
 urlpatterns = [
-    path('bankrates/', ExchangeRateController.bunk_rates)
+    path ('rates/', ExchangeAllViews.as_view ()),
+    path ('rates/nbu/', ExchangeNBUView.as_view ()),
+    path ('rates/mono/', ExchangeMonoView.as_view ()),
+    path ('rates/privat/', ExchangePrivatView.as_view ()),
 ]

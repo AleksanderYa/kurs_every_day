@@ -4,7 +4,7 @@ NBU_BANK_URL = 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?dat
 
 TELEGRAM_URL = 'https://api.telegram.org/botTOKEN/sendMessage?chat_id=CHATID&parse_mode=Markdown&text='
 TELEGRAM_CHAT_IP = '1075097936'
-TELEGRAM_BOT_TOKEN = '1841807907:AAElQcKWBvFg8JRMJilil0kqi6nJ5b_TSKM'
+TELEGRAM_BOT_TOKEN = '1841807907:AAEXN67bCVNbTM9JPTJYSajZSHWBIc1nSGY'
 
 USD = 'USD'
 EUR = 'EUR'

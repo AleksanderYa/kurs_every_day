@@ -60,7 +60,6 @@ class PrivatWorker(BaseBankWorker):
         self.date = self.date.date_to_privat()
         self.SITE = PRIBAT_BANK_URL + self.date
 
-
 class NbuWorker(BaseBankWorker):
     def __init__(self):
         self.date = ChangeDate()
@@ -72,9 +71,6 @@ class MonoWorker(BaseBankWorker):
     def __init__(self):
         self.helper = MonoHelper()
         self.SITE = MONO_BANK_URL
-
-
-
 
 if __name__ == '__main__':
     a = MonoWorker()

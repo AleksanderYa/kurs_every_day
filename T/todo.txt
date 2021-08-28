@@ -1,0 +1,13 @@
+Admin can setup scheduler
+  *  Create view ExchangeTimeSetupView, and create bootstrap dropdown with values :
+                5 minutes,
+                10 minutes,
+                15 minutes,
+                30 minutes,
+                45 minutes,
+                60 minutes;
+  *  Create button, which send selected value by POST request to http://localhost/exchangetimesetup;
+  *  Create method in Controller, which get data from POST request;
+  *  Create method SetupScheduler in ExchangeRateService and set time from controller;
+
+

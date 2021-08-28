@@ -18,11 +18,11 @@ class ExchangeRateService:
     def task_group_send_mess():
         obj = Currency.objects.all()[:1].get()
         messsage = f'_Курс валют \n{str(obj.date)[:16]}_\n\n*НБУ*\n*USD {obj.nbu_usd}*\n*EURO {obj.nbu_eur}*\n\n' \
-                   f'*ПриватБанк*\n*USD  {obj.privat_usd_bay} / {obj.privat_usd_sale}*\n' \
-                   f'*EURO  {obj.privat_eur_bay} / {obj.privat_eur_sale}*\n\n' \
-                   f'*MonoBank*\n*USD {obj.mono_usd_bay} / {obj.mono_usd_sale}*\n*EURO {obj.mono_eur_bay} / {obj.mono_eur_sale}*'
+                   f'*ПриватБанк*\n*USD  {obj.privat_usd_buy} / {obj.privat_usd_sale}*\n' \
+                   f'*EURO  {obj.privat_eur_buy} / {obj.privat_eur_sale}*\n\n' \
+                   f'*MonoBank*\n*USD {obj.mono_usd_buy} / {obj.mono_usd_sale}*\n*EURO {obj.mono_eur_buy} / {obj.mono_eur_sale}*'
         chain = Chain(cached=True, sync=True)
-        chain.append('currency.repositories.ExchangeRateRepository.create_db_obj')
+        # chain.append('currency.repositories.ExchangeRateRepository.create_db_obj')
         chain.append('currency.services.TelegramBotService.send_message', messsage)
         chain.run()
 
@@ -43,7 +43,10 @@ class TelegramBotService:
     def send_message(bot_message):
         send_text = TELEGRAM_URL.replace('TOKEN', TELEGRAM_BOT_TOKEN)
         send_text = send_text.replace('CHATID', TELEGRAM_CHAT_IP)
-        response = requests.get(send_text + bot_message)
+        send_text = send_text + bot_message
+        print(send_text)
+        response = requests.get(send_text)
+        print()
         return response.json()
 
 if __name__ == '__main__':
