@@ -4,7 +4,7 @@ from currency.views import ExchangeNBUView
 from currency.views import ExchangeMonoView
 from currency.views import ExchangePrivatView
     
-
+app_name = 'currency'
 urlpatterns = [
 
     # re_path(r'^exchangetimesetup/(?P<time>\d+)/', ExchangeRateController.timer),

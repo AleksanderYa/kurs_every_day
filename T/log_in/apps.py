@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class TestingConfig(AppConfig):
+class LogInConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'testing'
+    name = 'log_in'

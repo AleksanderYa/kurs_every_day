@@ -15,7 +15,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+STATIC_DIR = os.path.join('static', BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -31,15 +31,17 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'currency.apps.CurrencyConfig',
-    'django_q',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'currency.apps.CurrencyConfig',
+    'log_in.apps.LogInConfig',
+    'django_q',
+    'bootstrap4',
 ]
 
 REST_FRAMEWORK = {
@@ -71,6 +73,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            # 'builtins': [
+            #     'T.templatetags.blog_tags'  # Примерно так
+            #     ],
         },
     },
 ]
@@ -139,3 +144,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [STATIC_DIR, ]
+
+LOGIN_REDIRECT_URL = 'log_in:dashboard'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH =  str(os.path.join(BASE_DIR, 'sent_emails'))
