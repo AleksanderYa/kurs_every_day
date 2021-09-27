@@ -6,7 +6,6 @@ from currency.views import ExchangePrivatView
     
 app_name = 'currency'
 urlpatterns = [
-
     # re_path(r'^exchangetimesetup/(?P<time>\d+)/', ExchangeRateController.timer),
     # path('bankrates/', ExchangeRateController.bunk_rates),
     # path('exchangetimesetup/', ExchangeRateController.timer),

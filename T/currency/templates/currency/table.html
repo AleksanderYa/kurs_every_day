@@ -1,6 +1,7 @@
-{% extends 'currency/base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
+{% if request.user.is_authenticated %}
     <div>
         <table class="table table-striped">
           <thead>
@@ -13,6 +14,9 @@
           </tbody>
         </table>
     </div>
+{% else %}
+<p1>Авторизуйтесь!!</p1>
+{% endif %}
 {% endblock %}
 
 

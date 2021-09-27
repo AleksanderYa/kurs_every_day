@@ -8,7 +8,6 @@ from django.contrib.auth.views import (LoginView, LogoutView, PasswordResetDoneV
 
 app_name = 'log_in'
 
-
 urlpatterns = [
     path('register/', register, name='register'),
     path('edit/', edit, name='edit'),

@@ -31,7 +31,6 @@ def register(request):
 
     return render(request, 'log_in/register.html', context=context)
 
-
 @login_required
 def edit(request):
     if request.method == 'POST':
@@ -45,3 +44,8 @@ def edit(request):
         'form': user_form,
     }
     return render(request, 'log_in/edit.html', context=context)
+
+@login_required
+def mono_managare_view(request):
+    return render (request, 'log_in/mono_managare_view.html', context=context)
+

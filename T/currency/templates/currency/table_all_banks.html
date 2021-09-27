@@ -1,6 +1,8 @@
 {% extends 'currency/table.html' %}
 
+
 {% block thead %}
+
     <tr>
       <th scope="col">#</th>
       <th scope="col">Date</th>
@@ -34,4 +36,5 @@
             <td>  {{ ii.1.mono_eur_sale }} </td>
         </tr>
     {% endfor %}
+
 {% endblock %}

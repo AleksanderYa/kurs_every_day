@@ -1,6 +1,9 @@
 import os
 import django
-from currency.workers import PrivatWorker, MonoWorker, NbuWorker
+
+from currency.workers import PrivatWorker
+from currency.workers import MonoWorker
+from currency.workers import NbuWorker
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "T.settings")
 django.setup()
 from currency.models import Currency
