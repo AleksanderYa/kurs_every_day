@@ -11,7 +11,7 @@ urlpatterns = [
     # path('exchangetimesetup/', ExchangeRateController.timer),
     # path('test/', ExchangeRateController.test),
     path('rates/', ExchangeAllViews.as_view()),
-    path ('rates/nbu/', ExchangeNBUView.as_view()),
-    path ('rates/mono/', ExchangeMonoView.as_view()),
-    path ('rates/privat/', ExchangePrivatView.as_view()),
+    path ('rates/nbu/', ExchangeNBUView.as_view(), name='nbu_view'),
+    path ('rates/mono/', ExchangeMonoView.as_view(), name='mono_view'),
+    path ('rates/privat/', ExchangePrivatView.as_view(), name='privat_view'),
 ]

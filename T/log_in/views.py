@@ -1,5 +1,6 @@
 from django.http import request
 from django.shortcuts import render
+from django.views.generic.base import View
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistration, UserEditForm
 
@@ -47,5 +48,8 @@ def edit(request):
 
 @login_required
 def mono_managare_view(request):
-    return render (request, 'log_in/mono_managare_view.html', context=context)
+    return render (request, 'log_in/mono_managare_view.html')
 
+@login_required
+def test_view(request):
+    return render(request, template_name='log_in/test_view.html')

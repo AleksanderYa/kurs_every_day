@@ -5,5 +5,13 @@
 <br>
 <a href="{% url 'log_in:edit' %}" class="btn btn-primary">Edit Your Profile</a> or
 <a href="{% url 'log_in:password_change' %}" class="btn btn-warning">Change your password</a>
+<p1>
+
+{% if user.in_group('Admin') %}
+    <h1>Admin</h1>
+{% else %}
+    <h1>No Admin</h1>
+{% endif %}
+</p1>
 <hr>
 {% endblock content %}
