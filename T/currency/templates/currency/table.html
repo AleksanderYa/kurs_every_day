@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
+
 {% if request.user.is_authenticated %}
     <div>
         <table class="table table-striped">
@@ -15,8 +16,9 @@
         </table>
     </div>
 {% else %}
-<p1>Авторизуйтесь!!</p1>
+<h1>Авторизуйтесь!!</h1>
 {% endif %}
+
 {% endblock %}
 
 

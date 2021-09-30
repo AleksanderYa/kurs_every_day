@@ -1,6 +1,15 @@
 {% extends 'currency/table.html' %}
 {% block title %}MonoBank currency{% endblock title %}
+
 {% block thead %}
+
+{% for i in request.user.groups.all %}
+<!--{{ request.user.get_user_permissions }}-->
+{% if i == 'Privatbank'  %}
+{{ i | stringformat:'s'}}
+{% endif %}
+{% endfor %}
+
     <tr>
       <th scope="col">#</th>
       <th scope="col">Date</th>
