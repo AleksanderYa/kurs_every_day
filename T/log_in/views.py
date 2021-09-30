@@ -2,13 +2,16 @@ from django.http import request
 from django.shortcuts import render
 from django.views.generic.base import View
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegistration, UserEditForm
 
+from .forms import UserRegistration, UserEditForm
+from .helpers import SomeHelper
 
 @login_required
 def dashboard(request):
+    some_helper = SomeHelper()
+    some = some_helper.some_work(request)
     context = {
-        "welcome": "Welcome to your dashboard"
+        'helper':some,
     }
     return render(request, 'log_in/dashboard.html', context=context)
 

@@ -8,7 +8,6 @@ from currency.parametrs import EUR
 
 
 class BaseHelper(ABC):
-#####
     def __init__(self):
         self.create_obj = CreateObj()
 
@@ -27,7 +26,6 @@ class BaseHelper(ABC):
             return self.create_obj
 
 class CreateObj:
-#####
     def __init__(self):
         self.usd_sale = float()
         self.usd_buy = float()
@@ -35,7 +33,6 @@ class CreateObj:
         self.euro_buy = float()
 
 class PrivatHelper(BaseHelper):
-#####
     def if_el(self, i):
         if i['currency'] == USD:
             self.create_obj.usd_buy = float(i['saleRate'])

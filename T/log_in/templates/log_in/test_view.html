@@ -4,6 +4,7 @@
 <h1>{{ hi }}</h1>
 <br>
 <a href="{% url 'log_in:edit' %}" class="btn btn-primary">Edit Your Profile</a> or
-<!--<a href="{% url 'log_in:password_change' %}" class="btn btn-warning">Change your password</a>-->
+
+<h1> {{ user.username | lowe }}</h1>
 <hr>
 {% endblock content %}
