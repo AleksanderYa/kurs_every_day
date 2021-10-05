@@ -10,33 +10,17 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
         {% if request.user.is_authenticated %}
         <ul class="navbar-nav mr-auto">
-<!--            <li class="nav-item active">-->
-<!--                <a class="nav-link" href="{% url 'log_in:dashboard' %}">Home <span class="sr-only">(current)</span></a>-->
-<!--            </li>-->
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'currency:nbu_view' %}">Currency of National Bank</a>
             </li>
-<!--            {% for i in 'qw' %}-->
-<!--                {{ half_code|escape}}-->
-<!--            {% endfor%}-->
             {% for i in helper %}
                  <li class="nav-item">
                     <a class="nav-link" href="{% url i.link %}">{{ i.name }}</a>
                  </li>
             {% endfor %}
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link " href="{% url 'currency:privat_view' %}">Privat</a>-->
-<!--            </li>-->
-<!--            -->
-    <!--            <li class="nav-item">-->
-    <!--                <a class="nav-link" href="{% url 'currency:mono_view' %}">MonoBank</a>-->
-    <!--            </li>-->
-    <!--            <li class="nav-item">-->
-    <!--                <a class="nav-link " href="{% url 'currency:privat_view' %}">Privat</a>-->
-    <!--            </li>-->
+        <h2>{% load tags %}{% base_tag %}</h2>
         </ul>
         {% endif %}
         <span>

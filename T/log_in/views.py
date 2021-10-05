@@ -34,7 +34,6 @@ def register(request):
     context = {
         "form": form
     }
-
     return render(request, 'log_in/register.html', context=context)
 
 @login_required
@@ -51,10 +50,15 @@ def edit(request):
     }
     return render(request, 'log_in/edit.html', context=context)
 
-@login_required
-def mono_managare_view(request):
-    return render (request, 'log_in/mono_managare_view.html')
+def navbar(request):
+    # some_helper = SomeHelper()
+    # some = some_helper.some_work(request)
+    # context = {
+    #     'helper':some,
+    # }
+    return render(request, 'base/navbar.html', {'lol':'lol'})
 
-@login_required
-def test_view(request):
-    return render(request, template_name='log_in/test_view.html')
+
+
+
+

@@ -32,7 +32,6 @@ class ExchangeNBUView(ExchangeRateViews):
 
 class ExchangeMonoView(ExchangeRateViews):
     def get(self, request):
-        print(request.user.groups.all())
         return render(
             request,
             'currency/table_mono_bank.html',
