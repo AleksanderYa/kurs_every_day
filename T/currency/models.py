@@ -23,6 +23,10 @@ class Currency(models.Model):
         verbose_name = 'Курс валют'
         verbose_name_plural = 'Курсы валют'
         ordering = ['-date']
+        permissions = [
+            ("monobank_currency_view", "Can see monobanck currency"),
+            ("privatbank_currency_view", "Can see privatbank currency"),
+        ]
 
 
 

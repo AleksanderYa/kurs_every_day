@@ -1,15 +1,8 @@
 {% extends 'currency/table.html' %}
 {% block title %}MonoBank currency{% endblock title %}
 
+
 {% block thead %}
-
-{% for i in request.user.groups.all %}
-<!--{{ request.user.get_user_permissions }}-->
-{% if i == 'Privatbank'  %}
-{{ i | stringformat:'s'}}
-{% endif %}
-{% endfor %}
-
     <tr>
       <th scope="col">#</th>
       <th scope="col">Date</th>
@@ -21,14 +14,18 @@
 {% endblock %}
 
 {% block tbody %}
-    {% for ii in enum %}
-        <tr>
-            <th>  {{ ii.0 }} </th>
-            <td>  {{ ii.1.date }} </td>
-            <td>  {{ ii.1.mono_usd_buy }} </td>
-            <td>  {{ ii.1.mono_usd_sale }} </td>
-            <td>  {{ ii.1.mono_eur_buy }} </td>
-            <td>  {{ ii.1.mono_eur_sale }} </td>
-        </tr>
-    {% endfor %}
+    {% if perms.currency.monobank_currency_view %}
+        {% for ii in enum %}
+            <tr>
+                <th>  {{ ii.0 }} </th>
+                <td>  {{ ii.1.date }} </td>
+                <td>  {{ ii.1.mono_usd_buy }} </td>
+                <td>  {{ ii.1.mono_usd_sale }} </td>
+                <td>  {{ ii.1.mono_eur_buy }} </td>
+                <td>  {{ ii.1.mono_eur_sale }} </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <h1>Tou are not wrom monobank, authorizate!! </h1>
+    {% endif %}
 {% endblock %}

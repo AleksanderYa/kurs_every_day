@@ -3,8 +3,10 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
+
 from .forms import UserRegistration, UserEditForm
 from .helpers import SomeHelper
+
 
 @login_required
 def dashboard(request):

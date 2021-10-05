@@ -1,17 +1,8 @@
 {% extends 'currency/table.html' %}
 {% block title %}PrivatBank currency{% endblock title %}
-{% for i in request.user.groups.all %}
 
-
-{{ i | stringformat:'s'}}
-
-
-{% endfor %}
 
 {% block thead %}
-    {% if perms.currency %}
-        <h1>Ok</h1>
-    {% endif %}
     <tr>
       <th scope="col">#</th>
       <th scope="col">Date</th>
@@ -23,14 +14,26 @@
 {% endblock %}
 
 {% block tbody %}
-    {% for ii in enum %}
-        <tr>
-            <th>  {{ ii.0 }} </th>
-            <td>  {{ ii.1.date }} </td>
-            <td>  {{ ii.1.privat_usd_buy }} </td>
-            <td>  {{ ii.1.privat_usd_sale }} </td>
-            <td>  {{ ii.1.privat_eur_buy }} </td>
-            <td>  {{ ii.1.privat_eur_sale }} </td>
-        </tr>
-    {% endfor %}
+<!--    {% for i in user.groups.all %}-->
+<!--        <h2>Состоит в группе: {{ i }}</h2>-->
+<!--    {% endfor %}-->
+
+<!--    <h2>Privat_currency_view: {{ perms.currency.privatbank_currency_view }} </h2>-->
+<!--    <h2>Perms: {{ perms.all }}</h2>-->
+
+    {% if perms.currency.privatbank_currency_view %}
+        {% for ii in enum %}
+            <tr>
+                <th>  {{ ii.0 }} </th>
+                <td>  {{ ii.1.date }} </td>
+                <td>  {{ ii.1.privat_usd_buy }} </td>
+                <td>  {{ ii.1.privat_usd_sale }} </td>
+                <td>  {{ ii.1.privat_eur_buy }} </td>
+                <td>  {{ ii.1.privat_eur_sale }} </td>
+            </tr>
+        {% endfor %}
+{% else %}
+<h1>Tou are not from privatbank, authorizate!! </h1>
+{% endif %}
 {% endblock %}
+
