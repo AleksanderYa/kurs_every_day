@@ -10,12 +10,12 @@ from .helpers import SomeHelper
 
 @login_required
 def dashboard(request):
-    some_helper = SomeHelper()
-    some = some_helper.some_work(request)
-    context = {
-        'helper':some,
-    }
-    return render(request, 'log_in/dashboard.html', context=context)
+    # some_helper = SomeHelper()
+    # some = some_helper.some_work(request)
+    # context = {
+    #     'helper':some,
+    # }
+    return render(request, 'log_in/dashboard.html', {})
 
 
 def register(request):
@@ -49,14 +49,6 @@ def edit(request):
         'form': user_form,
     }
     return render(request, 'log_in/edit.html', context=context)
-
-def navbar(request):
-    # some_helper = SomeHelper()
-    # some = some_helper.some_work(request)
-    # context = {
-    #     'helper':some,
-    # }
-    return render(request, 'base/navbar.html', {'lol':'lol'})
 
 
 

@@ -72,6 +72,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'log_in.templatetags.filters_and_tags.buttons_view',
+                'log_in.templatetags.filters_and_tags.say_hi',
             ],
             # 'builtins': [
             #     'T.templatetags.blog_tags'  # Примерно так

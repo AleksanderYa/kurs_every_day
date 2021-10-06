@@ -15,12 +15,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'currency:nbu_view' %}">Currency of National Bank</a>
             </li>
-            {% for i in helper %}
+            {% for i in buttons_list %}
                  <li class="nav-item">
                     <a class="nav-link" href="{% url i.link %}">{{ i.name }}</a>
                  </li>
             {% endfor %}
-        <h2>{% load tags %}{% base_tag %}</h2>
         </ul>
         {% endif %}
         <span>

@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
+{% load filters_and_tags %}
 {% block title %}Dashboard{% endblock title %}
 {% block content %}
-<h1>{{welcome}}</h1>
 <br>
 <a href="{% url 'log_in:edit' %}" class="btn btn-primary">Edit Your Profile</a> or
 <a href="{% url 'log_in:password_change' %}" class="btn btn-warning">Change your password</a>

@@ -3,7 +3,7 @@ from django import template
 
 
 
-class SomeDaseHelper(ABC):
+class SomeBaseHelper(ABC):
     def __init__(self):
         self.some_list = []
         self.refer_dict = {
@@ -14,7 +14,7 @@ class SomeDaseHelper(ABC):
     def some_work(self, request):
         pass
 
-class SomeHelper(SomeDaseHelper):
+class SomeHelper(SomeBaseHelper):
     def some_work(self, request):
         if request:
             for i in request.user.groups.all():
@@ -27,12 +27,6 @@ class SomeHelper(SomeDaseHelper):
         return self.some_list
 
 
-class Tags:
-    register = template.Library()
-
-    @register.simple_tag
-    def base_tag(self, request):
-        return '2'
 
 
 
