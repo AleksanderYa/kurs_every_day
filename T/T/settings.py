@@ -153,6 +153,13 @@ LOGIN_REDIRECT_URL = 'log_in:dashboard'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
-
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH =  str(os.path.join(BASE_DIR, 'sent_emails'))
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'larus.sales2@gmail.com'
+EMAIL_HOST_PASSWORD = 'Larus37112202'
+
+
