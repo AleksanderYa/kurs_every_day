@@ -2,7 +2,6 @@ from abc import ABC
 from django import template
 
 
-
 class SomeBaseHelper(ABC):
     def __init__(self):
         self.some_list = []

@@ -1,17 +1,20 @@
 from django.urls import path
-from .views import edit, dashboard, register
 from django.urls import reverse_lazy
 from django.contrib.auth.views import (LoginView, LogoutView, PasswordResetDoneView, PasswordResetView,
                                        PasswordResetCompleteView, PasswordResetConfirmView,
                                        PasswordChangeView, PasswordChangeDoneView,
                                        PasswordResetDoneView)
+from .views import EditView
+from .views import RegisterView
+from .views import DashbordView
+
 
 app_name = 'log_in'
 
 urlpatterns = [
-    path('register/', register, name='register'),
-    path('edit/', edit, name='edit'),
-    path('dashboard/', dashboard, name='dashboard'),
+    path('register/', RegisterView.register, name='register'),
+    path('edit/', EditView.edit, name='edit'),
+    path('dashboard/', DashbordView.dashboard, name='dashboard'),
     path('', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='log_in/logged_out.html'), name='logout'),
     path('password_change/', PasswordChangeView.as_view(

@@ -154,7 +154,6 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH =  str(os.path.join(BASE_DIR, 'sent_emails'))
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
