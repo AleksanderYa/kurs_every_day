@@ -21,6 +21,7 @@
 
 {% block tbody %}
     {% for ii in enum %}
+
         <tr>
             <th>  {{ ii.0 }} </th>
             <td>  {{ ii.1.date }} </td>
@@ -35,6 +36,9 @@
             <td>  {{ ii.1.mono_eur_buy }} </td>
             <td>  {{ ii.1.mono_eur_sale }} </td>
         </tr>
+
+
+
     {% endfor %}
 
 {% endblock %}
