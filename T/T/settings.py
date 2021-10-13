@@ -74,7 +74,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'log_in.templatetags.filters_and_tags.buttons_view',
-                'log_in.templatetags.filters_and_tags.say_hi',
+                'log_in.templatetags.filters_and_tags.delete_messages_from_base',
             ],
             # 'builtins': [
             #     'T.templatetags.blog_tags'  # Примерно так

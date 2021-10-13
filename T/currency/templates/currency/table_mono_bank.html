@@ -20,11 +20,11 @@
             <tr>
 {#             <button type="button" class="btn btn-outline-danger">Опасность</button>#}
 {#             <button type="button" class="btn btn-outline-warning">Предупреждение</button>#}
-                <td>
-                    <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModal">
-                      Change
-                    </button>
-                </td>
+{#                <td>#}
+{#                    <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModal">#}
+{#                      Change#}
+{#                    </button>#}
+{#                </td>#}
                 <th>  {{ ii.0 }} </th>
                 <td>  {{ ii.1.date }} </td>
                 <td>  {{ ii.1.mono_usd_buy }} </td>
@@ -32,12 +32,17 @@
                 <td>  {{ ii.1.mono_eur_buy }} </td>
                 <td>  {{ ii.1.mono_eur_sale }} </td>
                 <th>
-                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
-                          Delate
+                    <!-- Button trigger modal -->
+                    {% include 'currency/modal_crud_buttons.html' %}
+                    {% include 'currency/modal_del_message.html' %}
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
+                          Edit
                     </button>
                 </th>
+
+
             </tr>
-            {% include 'currency/modal_crud_buttons.html' %}
+
         {% endfor %}
     {% else %}
         <h1>Tou are not from monobank, you need log in!! </h1>

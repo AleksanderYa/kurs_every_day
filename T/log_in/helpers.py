@@ -1,5 +1,6 @@
 from abc import ABC
 from django import template
+from currency.repositories import GetterExchangeRate
 
 
 class SomeBaseHelper(ABC):
@@ -25,6 +26,11 @@ class SomeHelper(SomeBaseHelper):
                     self.some_list.append(some_dict)
         return self.some_list
 
+# class CrudeHelper:
+#     @staticmethod
+#     def obj():
+#         obj = GetterExchangeRate.get()
+#         return obj
 
 
 
