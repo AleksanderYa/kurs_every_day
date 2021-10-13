@@ -18,13 +18,6 @@
         {% for ii in enum %}
 
             <tr>
-{#             <button type="button" class="btn btn-outline-danger">Опасность</button>#}
-{#             <button type="button" class="btn btn-outline-warning">Предупреждение</button>#}
-{#                <td>#}
-{#                    <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModal">#}
-{#                      Change#}
-{#                    </button>#}
-{#                </td>#}
                 <th>  {{ ii.0 }} </th>
                 <td>  {{ ii.1.date }} </td>
                 <td>  {{ ii.1.mono_usd_buy }} </td>
@@ -39,10 +32,7 @@
                           Edit
                     </button>
                 </th>
-
-
             </tr>
-
         {% endfor %}
     {% else %}
         <h1>Tou are not from monobank, you need log in!! </h1>

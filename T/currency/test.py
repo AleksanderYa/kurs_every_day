@@ -1,11 +1,7 @@
 import os
-import django
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "T.settings")
-django.setup()
-from currency.models import Currency
-
-bases = {
-    'base': Currency.objects.all()
-}
-
+def getenv_boolean(name: str, default: bool=False) -> bool:
+    value = os.getenv(name, default)
+    if isinstance(value, str):
+        return value.lower() == 'true'
+    return value

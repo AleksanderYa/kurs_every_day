@@ -16,14 +16,18 @@ def buttons_view(request):
         'buttons_list': some,
     }
 
-
 @register.simple_tag
-def delete_messages_from_base(request):
-    obj = Currency.objects.filter()
-    print(id, 'Delete')
-    return {
-        'messages': 'Message is delete'
-    }
+def delete_messages_from_base(request, *args):
+    try:
+        if args[0]:
+            obj = Currency.objects.filter(id=28)
+            obj.delete()
+            print(args, 'Delete')
+            return {
+                'message': 'Message is delete'
+            }
+    except Exception as e:
+        print(e)
 
 @register.simple_tag
 def edit_(self):
