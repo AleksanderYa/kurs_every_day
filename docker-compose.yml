@@ -1,24 +1,68 @@
-version: '3'
+version: '3.1'
+services: 
+    django:
+        image: kurs_day
+        command: python manage.py runserver 0.0.0.0:8000
+        ports:
+          - 8000:8000
+#        links:
+#          - db
+#          - migration
+        depends_on:
+          - migration
+          - db
+    db:
+        image: mysql:latest
+        restart: always
+#        volumes:
+#          - .:/var/run/mysqld/mysqlx.sock
+#          - mysql:/var/lib/mysql
+        environment:
+          MYSQL_USER: root
+          MYSQL_ROOT_PASSWORD: 37112202
+          MYSQL_DATABASE: test_db
+          MYSQL_ROOT_PASSWORD: 37112202
+        ports:
+          - 33060:33060
 
-services:
-  web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/web_django
-    ports:
-      - '8000:8000'
-    depends_on:
-      - db
-  db:
-    image: mysql:5.1
-    ports:
-      - '3306:3306'
-    environment:
-      MYSQL_DATABASE: 'db_django'
-      MYSQL_USER: 'root'
-      MYSQL_PASSWORD: '37112202'
-      MYSQL_ROOT_PASSWORD: '37112202'
-    restart: always
-    volumes:
-      - ./db_django:/var/lib/mysql
+
+    migration:
+      build: .
+      image: kurs_day
+      command: python manage.py migrate
+#      links:
+#        - db
+      depends_on:
+        - db
+        
+#    cockets:
+#        image: ubuntu:latest 
+#        command:  
+
+
+
+#version: '3'
+#
+#services:
+#
+#  db:
+#    image: mysql
+#    ports:
+#      - '3308:3308'
+#    environment:
+#      MYSQL_DATABASE: 'kurs_valut'
+#      MYSQL_USER: 'root'
+#      MYSQL_PASSWORD: '37112202'
+#      MYSQL_ROOT_PASSWORD: '37112202'
+#    restart: always
+#    volumes:
+#      - ./db_django:/var/lib/mysql
+#  web:
+#    build: .
+#    command: python3 manage.py migrate
+#    volumes:
+#      - .:T/
+#    ports:
+#      - '8000:8000'
+#    depends_on:
+#      - db
