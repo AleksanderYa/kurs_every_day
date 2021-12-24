@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class Currency(models.Model):
-    id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+    # id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
     date = models.DateTimeField(auto_created=True, auto_now=True)
     nbu_usd = models.FloatField()
     nbu_eur = models.FloatField()
